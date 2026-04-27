@@ -1,0 +1,142 @@
+{
+  "updated_at": "2026-04-27",
+  "language_target": "pt-BR",
+  "collection_policy": "curadoria focada; resumo original em portugues; sem espelhamento integral de paginas externas",
+  "sources": [
+    {
+      "group": "TTN LoRaWAN",
+      "domain": "thethingsnetwork.org",
+      "language_found": "en",
+      "status": "analisada",
+      "urls": [
+        "https://www.thethingsnetwork.org/docs/lorawan/",
+        "https://www.thethingsnetwork.org/docs/lorawan/academic/",
+        "https://www.thethingsnetwork.org/docs/lorawan/adaptive-data-rate/",
+        "https://www.thethingsnetwork.org/docs/lorawan/addressing/",
+        "https://www.thethingsnetwork.org/docs/lorawan/antenna-connectors/",
+        "https://www.thethingsnetwork.org/docs/lorawan/antenna-types/",
+        "https://www.thethingsnetwork.org/docs/lorawan/architecture/",
+        "https://www.thethingsnetwork.org/docs/lorawan/classes/",
+        "https://www.thethingsnetwork.org/docs/lorawan/concentrators/",
+        "https://www.thethingsnetwork.org/docs/lorawan/db-dbm-dbi-dbd/",
+        "https://www.thethingsnetwork.org/docs/lorawan/duty-cycle/",
+        "https://www.thethingsnetwork.org/docs/lorawan/eirp-and-erp/",
+        "https://www.thethingsnetwork.org/docs/lorawan/end-device-activation/",
+        "https://www.thethingsnetwork.org/docs/lorawan/fec-and-code-rate/",
+        "https://www.thethingsnetwork.org/docs/lorawan/frequencies-by-country/",
+        "https://www.thethingsnetwork.org/docs/lorawan/frequency-plans/",
+        "https://www.thethingsnetwork.org/docs/lorawan/glossary/",
+        "https://www.thethingsnetwork.org/docs/lorawan/limitations/",
+        "https://www.thethingsnetwork.org/docs/lorawan/lora-phy-format/",
+        "https://www.thethingsnetwork.org/docs/lorawan/lorawan-relay/",
+        "https://www.thethingsnetwork.org/docs/lorawan/message-types/",
+        "https://www.thethingsnetwork.org/docs/lorawan/modulation-data-rate/",
+        "https://www.thethingsnetwork.org/docs/lorawan/prefix-assignments/",
+        "https://www.thethingsnetwork.org/docs/lorawan/preparing-certification/",
+        "https://www.thethingsnetwork.org/docs/lorawan/regional-limitations-of-rf-use/",
+        "https://www.thethingsnetwork.org/docs/lorawan/regional-parameters/",
+        "https://www.thethingsnetwork.org/docs/lorawan/rssi-and-snr/",
+        "https://www.thethingsnetwork.org/docs/lorawan/security/",
+        "https://www.thethingsnetwork.org/docs/lorawan/spreading-factors/",
+        "https://www.thethingsnetwork.org/docs/lorawan/the-things-certified-security/",
+        "https://www.thethingsnetwork.org/docs/lorawan/transceivers/",
+        "https://www.thethingsnetwork.org/docs/lorawan/what-is-lorawan/"
+      ],
+      "topics": [
+        "LoRa e LoRaWAN",
+        "arquitetura",
+        "classes A/B/C",
+        "ADR",
+        "ativacao OTAA/ABP",
+        "seguranca",
+        "RSSI/SNR",
+        "EIRP/ERP",
+        "duty cycle",
+        "planos regionais",
+        "formato PHY",
+        "tipos de mensagens",
+        "antenas e concentradores"
+      ]
+    },
+    {
+      "group": "ChirpStack v4",
+      "domain": "chirpstack.io",
+      "language_found": "en",
+      "status": "analisada",
+      "urls": [
+        "https://www.chirpstack.io/docs/",
+        "https://www.chirpstack.io/docs/architecture.html",
+        "https://www.chirpstack.io/docs/chirpstack/configuration.html",
+        "https://www.chirpstack.io/docs/chirpstack/use/tenants.html",
+        "https://www.chirpstack.io/docs/chirpstack/use/applications.html",
+        "https://www.chirpstack.io/docs/chirpstack/use/device-profiles.html",
+        "https://www.chirpstack.io/docs/chirpstack/use/devices.html",
+        "https://www.chirpstack.io/docs/chirpstack/use/gateways.html",
+        "https://www.chirpstack.io/docs/chirpstack/integrations/mqtt.html",
+        "https://www.chirpstack.io/docs/chirpstack-gateway-bridge/index.html",
+        "https://www.chirpstack.io/docs/chirpstack-mqtt-forwarder/index.html",
+        "https://www.chirpstack.io/docs/chirpstack-concentratord/index.html"
+      ],
+      "topics": [
+        "arquitetura",
+        "regioes suportadas",
+        "tenants",
+        "applications",
+        "device profiles",
+        "devices",
+        "gateways",
+        "MQTT",
+        "Gateway Bridge",
+        "MQTT Forwarder",
+        "Concentratord",
+        "configuracao"
+      ]
+    },
+    {
+      "group": "MOKO LoRa/LoRaWAN",
+      "domain": "mokolora.com",
+      "language_found": "pt",
+      "status": "analisada",
+      "urls": [
+        "https://www.mokolora.com/pt/full-understanding-of-lora-and-lorawan/"
+      ],
+      "topics": [
+        "visao geral de LoRa",
+        "visao geral de LoRaWAN",
+        "elementos de rede",
+        "gateways",
+        "aplicacoes"
+      ]
+    },
+    {
+      "group": "LoRa Alliance",
+      "domain": "resources.lora-alliance.org",
+      "language_found": "en",
+      "status": "referencia normativa",
+      "urls": [
+        "https://resources.lora-alliance.org/getting-started-with-lorawan/ts001-1-0-4-lorawan-l2-1-0-4-specification",
+        "https://resources.lora-alliance.org/document/rp002-1-0-5-lorawan-regional-parameters"
+      ],
+      "topics": [
+        "especificacao LoRaWAN L2",
+        "parametros regionais",
+        "MAC",
+        "classes",
+        "seguranca"
+      ]
+    },
+    {
+      "group": "Video indicado no email",
+      "domain": "youtube.com",
+      "language_found": "nao confirmado",
+      "status": "link preservado; transcricao nao dependente",
+      "urls": [
+        "https://www.youtube.com/watch?v=9NjgRWlvw44"
+      ],
+      "topics": [
+        "LoRaWAN em 60 minutos",
+        "revisao conceitual"
+      ]
+    }
+  ]
+}

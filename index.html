@@ -1,0 +1,1138 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ET7GM - Material Offline</title>
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand">
+          <strong>ET7GM - Redes de Sensores Sem Fio</strong>
+          <span>Guia offline para prova de suficiencia</span>
+        </div>
+        <nav class="nav" aria-label="Navegacao principal">
+          <a href="#resumo">Resumo</a>
+          <a href="#indice-assuntos">Indice por assunto</a>
+          <a href="#rssf">RSSF, IoT e LPWAN</a>
+          <a href="#lora">LoRa</a>
+          <a href="#lora-expandido">LoRa PHY expandido</a>
+          <a href="#lrfhss">LR-FHSS</a>
+          <a href="#lorawan">LoRaWAN</a>
+          <a href="#lorawan-expandido">LoRaWAN expandido</a>
+          <a href="#regionais">Parametros regionais</a>
+          <a href="#chirpstack">ChirpStack</a>
+          <a href="#chirpstack-expandido">ChirpStack expandido</a>
+          <a href="#troubleshooting">Troubleshooting</a>
+          <a href="#calculos">Calculos</a>
+          <a href="#glossario">Glossario</a>
+          <a href="#simulado">Simulado</a>
+          <a href="#fontes-analisadas">Fontes analisadas</a>
+          <a href="#fontes">Fontes</a>
+        </nav>
+      </aside>
+
+      <div class="main">
+        <header class="hero">
+          <h1>Material offline para responder a prova de ET7GM</h1>
+          <p>Conteudo focado em LoRa, LR-FHSS, LoRaWAN e ChirpStack, com formulas, exemplos resolvidos e calculadoras locais. Este arquivo funciona sem internet.</p>
+          <div class="exam-strip" aria-label="Dados da prova">
+            <span class="pill">Data: 26/05/2026</span>
+            <span class="pill">Sala: CA-307</span>
+            <span class="pill">Horario: 13:50 as 16:20</span>
+            <span class="pill">Sem internet durante a prova</span>
+          </div>
+          <div class="search-panel" role="search">
+            <label for="local-search">
+              Busca offline no HTML
+              <input id="local-search" type="search" placeholder="Ex.: ADR, OTAA, duty cycle, RSSI, ChirpStack, AU915">
+            </label>
+            <div id="search-results" class="search-results" aria-live="polite"></div>
+          </div>
+        </header>
+
+        <main>
+          <section id="resumo">
+            <h2>Resumo de consulta rapida</h2>
+            <p class="lead">Se a questao for conceitual, comece por estas frases. Se for numerica, va direto para a secao de calculos.</p>
+            <ul class="quick-list">
+              <li><strong>LoRa</strong> e camada fisica; <strong>LoRaWAN</strong> e protocolo MAC/rede.</li>
+              <li><strong>SF maior</strong> aumenta alcance e robustez, mas aumenta muito o airtime e reduz taxa.</li>
+              <li><strong>BW maior</strong> reduz airtime e aumenta taxa, mas piora sensibilidade.</li>
+              <li><strong>Downlink</strong> e recurso escasso em LoRaWAN; ACK em excesso reduz capacidade.</li>
+              <li><strong>OTAA</strong> e preferivel a ABP porque deriva chaves de sessao e evita muitos problemas de contador.</li>
+              <li><strong>ADR</strong> e bom para dispositivo fixo; para dispositivo movel pode reagir tarde.</li>
+              <li><strong>Gateway</strong> nao descriptografa payload de aplicacao; ele encaminha quadros.</li>
+              <li><strong>Plano regional</strong> precisa bater em dispositivo, gateway e servidor.</li>
+            </ul>
+          </section>
+
+          <section id="indice-assuntos">
+            <h2>Indice por assunto</h2>
+            <p class="lead">Este mapa organiza a base expandida pelos temas que mais provavelmente viram questoes.</p>
+            <div class="topic-map">
+              <article class="topic-card">
+                <h3>LoRa PHY</h3>
+                <p>CSS, SF, BW, CR, preambulo, cabecalho, CRC, FEC, taxa, airtime, transceivers, concentradores e antenas.</p>
+                <div class="tag-row"><span class="tag">SF/BW/CR</span><span class="tag">PHY</span><span class="tag">Airtime</span></div>
+              </article>
+              <article class="topic-card">
+                <h3>LoRaWAN</h3>
+                <p>Arquitetura, classes A/B/C, Join Server, Network Server, Application Server, mensagens, seguranca, OTAA/ABP e ADR.</p>
+                <div class="tag-row"><span class="tag">OTAA</span><span class="tag">ADR</span><span class="tag">Seguranca</span></div>
+              </article>
+              <article class="topic-card">
+                <h3>Parametros regionais</h3>
+                <p>EU868, US915, AU915/Brasil, frequencias, duty cycle, dwell time, channel mask, RX1/RX2, EIRP e ERP.</p>
+                <div class="tag-row"><span class="tag">EU868</span><span class="tag">US915</span><span class="tag">AU915</span></div>
+              </article>
+              <article class="topic-card">
+                <h3>ChirpStack</h3>
+                <p>Tenants, applications, device profiles, devices, gateways, MQTT, Gateway Bridge, MQTT Forwarder e Concentratord.</p>
+                <div class="tag-row"><span class="tag">MQTT</span><span class="tag">Gateway</span><span class="tag">Device profile</span></div>
+              </article>
+              <article class="topic-card">
+                <h3>Calculos</h3>
+                <p>dBm/mW/W, dBi/dBd, EIRP/ERP, ruido, SNR, link budget, margem, taxa LoRa, airtime e duty cycle.</p>
+                <div class="tag-row"><span class="tag">dBm</span><span class="tag">SNR</span><span class="tag">Link budget</span></div>
+              </article>
+              <article class="topic-card">
+                <h3>Troubleshooting</h3>
+                <p>Join falhando, gateway offline, payload sem decode, downlink parado, contador ABP e configuracao regional errada.</p>
+                <div class="tag-row"><span class="tag">Join</span><span class="tag">RX2</span><span class="tag">FCnt</span></div>
+              </article>
+            </div>
+          </section>
+
+          <section id="rssf">
+            <h2>RSSF, IoT e LPWAN</h2>
+            <p>Uma rede de sensores sem fio conecta nos sensores e atuadores que medem grandezas fisicas, executam pouco processamento e enviam dados por radio. Em IoT, esses nos costumam ser alimentados por bateria, enviam pacotes pequenos e precisam funcionar por longos periodos.</p>
+            <div class="note">
+              <strong>Trade-off central:</strong> alcance, taxa, consumo e latencia competem entre si. Uma tecnologia que aumenta muito o alcance normalmente paga com menor taxa, maior tempo no ar ou maior latencia.
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Tecnologia</th>
+                  <th>Boa para</th>
+                  <th>Limitacao tipica</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>BLE</td>
+                  <td>baixo consumo, curto alcance, celular como gateway</td>
+                  <td>alcance limitado</td>
+                </tr>
+                <tr>
+                  <td>Wi-Fi</td>
+                  <td>alta taxa, IP nativo</td>
+                  <td>alto consumo para sensores a bateria</td>
+                </tr>
+                <tr>
+                  <td>Zigbee / IEEE 802.15.4</td>
+                  <td>redes locais, baixo consumo, topologia em malha</td>
+                  <td>alcance menor que LPWAN</td>
+                </tr>
+                <tr>
+                  <td>LoRaWAN</td>
+                  <td>telemetria de longo alcance, baixa potencia, payload pequeno</td>
+                  <td>baixa taxa, downlink limitado</td>
+                </tr>
+                <tr>
+                  <td>NB-IoT / LTE-M</td>
+                  <td>cobertura celular e operacao gerenciada</td>
+                  <td>dependencia de operadora e modulo celular</td>
+                </tr>
+              </tbody>
+            </table>
+            <h3>Resposta curta para prova</h3>
+            <p>LPWAN e uma classe de redes para objetos que precisam transmitir poucos dados, a longas distancias, consumindo pouca energia. LoRaWAN e uma LPWAN nao celular, adequada para telemetria esparsa.</p>
+          </section>
+
+          <section id="lora">
+            <h2>LoRa</h2>
+            <p>LoRa e uma camada fisica baseada em <strong>Chirp Spread Spectrum</strong>. Ela define a modulacao usada no radio. O protocolo de rede, seguranca, classes e integracao com servidores ficam em LoRaWAN.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Parametro</th>
+                  <th>Significado</th>
+                  <th>Efeito em prova</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>SF</td>
+                  <td>Spreading Factor, usualmente SF7 a SF12</td>
+                  <td>SF maior aumenta robustez e airtime; SF menor aumenta taxa</td>
+                </tr>
+                <tr>
+                  <td>BW</td>
+                  <td>largura de banda, comum 125/250/500 kHz</td>
+                  <td>BW maior aumenta taxa e reduz sensibilidade</td>
+                </tr>
+                <tr>
+                  <td>CR</td>
+                  <td>coding rate, 4/5 a 4/8</td>
+                  <td>mais redundancia aumenta robustez e airtime</td>
+                </tr>
+                <tr>
+                  <td>RSSI</td>
+                  <td>potencia recebida em dBm</td>
+                  <td>mais alto e melhor, mas nao basta sem SNR</td>
+                </tr>
+                <tr>
+                  <td>SNR</td>
+                  <td>relacao sinal-ruido em dB</td>
+                  <td>em LoRa pode ser negativo e ainda funcionar</td>
+                </tr>
+                <tr>
+                  <td>Sensibilidade</td>
+                  <td>menor potencia recebida decodificavel</td>
+                  <td>entra diretamente no link budget</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="formula"><code>Tsym = 2^SF / BW</code></div>
+            <p>Como o tempo de simbolo depende de `2^SF`, aumentar o SF faz o airtime crescer rapidamente. Esta e uma das ideias mais importantes para questoes de LoRa.</p>
+            <div class="warning">
+              <strong>Erro comum:</strong> dizer que SF maior e sempre melhor. Ele melhora alcance, mas reduz capacidade da rede, aumenta consumo e aumenta chance de ocupar o canal por muito tempo.
+            </div>
+          </section>
+
+          <section id="lora-expandido">
+            <h2>LoRa PHY expandido</h2>
+            <p class="lead">Complemento das paginas TTN sobre formato PHY, FEC/code rate, modulacao, antenas, conectores, transceivers e concentradores.</p>
+            <h3>Formato fisico de pacote</h3>
+            <p>Um pacote LoRa pode ser entendido como preambulo, cabecalho, payload, CRC e codificacao. O preambulo permite detectar e sincronizar a transmissao; o cabecalho explicito informa parametros do payload; o CRC ajuda a detectar erro; e a codificacao adiciona redundancia.</p>
+            <table class="dense-table">
+              <thead>
+                <tr>
+                  <th>Parte</th>
+                  <th>Funcao</th>
+                  <th>Impacto</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Preambulo</td>
+                  <td>sincronizacao receptor-transmissor</td>
+                  <td>aumenta confiabilidade de deteccao e aumenta airtime</td>
+                </tr>
+                <tr>
+                  <td>Cabecalho</td>
+                  <td>informa tamanho, CR e CRC quando explicito</td>
+                  <td>modo explicito e o normal em LoRaWAN</td>
+                </tr>
+                <tr>
+                  <td>Payload</td>
+                  <td>dados do frame LoRaWAN</td>
+                  <td>payload maior aumenta simbolos e tempo no ar</td>
+                </tr>
+                <tr>
+                  <td>CRC</td>
+                  <td>deteccao de erro</td>
+                  <td>aumenta overhead, mas evita aceitar quadro corrompido</td>
+                </tr>
+                <tr>
+                  <td>FEC/CR</td>
+                  <td>redundancia para correcao de erro</td>
+                  <td>mais robustez com maior airtime</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3>Regra mental SF/BW/CR</h3>
+            <ul>
+              <li>SF maior: melhor sensibilidade, menor taxa, maior airtime.</li>
+              <li>BW maior: maior taxa, menor airtime, pior sensibilidade.</li>
+              <li>CR mais redundante: mais tolerancia a erro, maior airtime.</li>
+              <li>Preambulo maior: mais tempo para sincronizar, maior consumo.</li>
+            </ul>
+
+            <h3>Transceiver, concentrador e gateway</h3>
+            <p><strong>Transceiver</strong> e o radio do dispositivo final, como familias SX127x ou SX126x. <strong>Concentrador</strong> e o chip de gateway, como SX1301/SX1302/SX1303, capaz de receber varios canais e spreading factors. <strong>Gateway</strong> combina concentrador, computador embarcado, backhaul IP e software de encaminhamento.</p>
+
+            <h3>Antenas e conectores</h3>
+            <table class="dense-table">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Uso</th>
+                  <th>Risco</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>U.FL</td>
+                  <td>placas pequenas e conexao interna</td>
+                  <td>delicado; perde facil por montagem ruim</td>
+                </tr>
+                <tr>
+                  <td>SMA</td>
+                  <td>laboratorio e dispositivos externos simples</td>
+                  <td>adaptador/cabo adiciona perda</td>
+                </tr>
+                <tr>
+                  <td>N-Type</td>
+                  <td>instalacao externa mais robusta</td>
+                  <td>custo e tamanho maiores</td>
+                </tr>
+                <tr>
+                  <td>PCB/wire/spring</td>
+                  <td>dispositivos compactos</td>
+                  <td>layout e caixa afetam muito o desempenho</td>
+                </tr>
+                <tr>
+                  <td>Colinear</td>
+                  <td>gateway externo com maior ganho</td>
+                  <td>diagrama de radiacao fica mais estreito</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="warning"><strong>Erro de prova:</strong> tratar ganho de antena como energia criada. Ganho redistribui radiacao; EIRP ainda precisa considerar potencia e perdas.</div>
+          </section>
+
+          <section id="lrfhss">
+            <h2>LR-FHSS</h2>
+            <p>LR-FHSS significa <strong>Long Range - Frequency Hopping Spread Spectrum</strong>. Ele faz parte do ecossistema LoRaWAN em equipamentos/regioes que suportam esta camada fisica, mas nao e LoRa CSS.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>LoRa CSS</th>
+                  <th>LR-FHSS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>usa chirps espalhados em uma largura de banda</td>
+                  <td>usa saltos de frequencia estreitos e codificacao robusta</td>
+                </tr>
+                <tr>
+                  <td>parametros principais: SF, BW, CR</td>
+                  <td>parametros dependem do modo LR-FHSS e do plano regional</td>
+                </tr>
+                <tr>
+                  <td>muito usado em redes LoRaWAN terrestres tradicionais</td>
+                  <td>util para redes densas, longo alcance e satelite</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>Resposta esperada: LR-FHSS aumenta robustez e capacidade para uplinks pequenos em cenarios densos ou de longo alcance, dividindo a transmissao em saltos/frequencias de forma mais tolerante a interferencia. Ele nao transforma LoRaWAN em rede de alta taxa.</p>
+          </section>
+
+          <section id="lorawan">
+            <h2>LoRaWAN</h2>
+            <p>LoRaWAN define a arquitetura de rede, camada MAC, classes de dispositivo, ativacao, seguranca, ADR, uplink/downlink e parametros regionais.</p>
+            <h3>Arquitetura</h3>
+            <ol>
+              <li>O end device transmite um uplink LoRaWAN.</li>
+              <li>Um ou mais gateways recebem o quadro.</li>
+              <li>Os gateways encaminham PHY payload e metadados ao servidor por IP.</li>
+              <li>O Network Server valida MIC, remove duplicatas, processa MAC e escolhe gateway para downlink.</li>
+              <li>O Application Server entrega o payload/evento para a aplicacao.</li>
+            </ol>
+            <table>
+              <thead>
+                <tr>
+                  <th>Componente</th>
+                  <th>Funcao</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>End device</td>
+                  <td>sensor/atuador, normalmente bateria, envia uplinks e recebe downlinks nas janelas permitidas</td>
+                </tr>
+                <tr>
+                  <td>Gateway</td>
+                  <td>ponte radio-IP; nao e dono da sessao de seguranca da aplicacao</td>
+                </tr>
+                <tr>
+                  <td>Network Server</td>
+                  <td>deduplicacao, MIC, MAC commands, ADR, roteamento de downlink</td>
+                </tr>
+                <tr>
+                  <td>Join Server</td>
+                  <td>processa join OTAA e deriva chaves de sessao</td>
+                </tr>
+                <tr>
+                  <td>Application Server</td>
+                  <td>processa payload de aplicacao e integra com sistemas externos</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3>Classes</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Classe</th>
+                  <th>Funcionamento</th>
+                  <th>Uso tipico</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>A</td>
+                  <td>todo uplink abre RX1 e RX2</td>
+                  <td>padrao, menor consumo, obrigatoria</td>
+                </tr>
+                <tr>
+                  <td>B</td>
+                  <td>beacons sincronizam janelas extras</td>
+                  <td>downlink com horario previsivel</td>
+                </tr>
+                <tr>
+                  <td>C</td>
+                  <td>receptor quase sempre aberto</td>
+                  <td>atuadores alimentados pela rede eletrica</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3>OTAA e ABP</h3>
+            <p><strong>OTAA</strong> e recomendado: o dispositivo faz Join Request/Join Accept e deriva chaves de sessao. <strong>ABP</strong> usa parametros gravados manualmente e e mais suscetivel a problemas de contador e reuso de chaves.</p>
+
+            <h3>Seguranca</h3>
+            <p>LoRaWAN usa AES-128. O MIC protege integridade/autenticidade do quadro. Chaves de rede protegem controle e autenticidade; AppSKey protege payload de aplicacao. Em LoRaWAN 1.1 ha separacao mais detalhada de chaves de rede, mas a ideia de prova e manter rede e aplicacao separadas.</p>
+
+            <h3>ADR</h3>
+            <p>ADR usa a qualidade do link observada para ajustar taxa e potencia. Com boa margem, o servidor pode reduzir SF ou potencia. Isso diminui airtime e consumo. Em dispositivos moveis, a condicao do canal muda rapido e ADR pode nao acompanhar.</p>
+
+            <h3>Downlink</h3>
+            <p>Downlink e caro porque o gateway precisa transmitir, ha restricoes regionais e dispositivos classe A so escutam apos uplink. ACK confirmado deve ser usado com cuidado.</p>
+          </section>
+
+          <section id="lorawan-expandido">
+            <h2>LoRaWAN expandido</h2>
+            <p class="lead">Complemento das paginas TTN sobre mensagens, enderecamento, ativacao, seguranca, limitacoes, relay e certificacao.</p>
+
+            <h3>Tipos de mensagem</h3>
+            <table class="dense-table">
+              <thead>
+                <tr>
+                  <th>Tipo</th>
+                  <th>Quando aparece</th>
+                  <th>Ideia para prova</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Join Request</td>
+                  <td>inicio OTAA</td>
+                  <td>dispositivo pede entrada na rede</td>
+                </tr>
+                <tr>
+                  <td>Join Accept</td>
+                  <td>resposta OTAA</td>
+                  <td>rede aceita e permite derivar chaves</td>
+                </tr>
+                <tr>
+                  <td>Unconfirmed Data Up/Down</td>
+                  <td>telemetria comum</td>
+                  <td>nao exige ACK; melhor para capacidade</td>
+                </tr>
+                <tr>
+                  <td>Confirmed Data Up/Down</td>
+                  <td>mensagem que pede confirmacao</td>
+                  <td>usar pouco; consome downlink</td>
+                </tr>
+                <tr>
+                  <td>MAC commands</td>
+                  <td>controle de rede</td>
+                  <td>podem ir em FOpts ou FRMPayload dependendo do caso</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3>Identificadores e chaves</h3>
+            <table class="dense-table">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Funcao</th>
+                  <th>Observacao</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>DevEUI</td>
+                  <td>identidade global do dispositivo</td>
+                  <td>fica no cadastro do device</td>
+                </tr>
+                <tr>
+                  <td>JoinEUI/AppEUI</td>
+                  <td>identifica contexto de join</td>
+                  <td>precisa bater no OTAA</td>
+                </tr>
+                <tr>
+                  <td>DevAddr</td>
+                  <td>endereco curto de sessao</td>
+                  <td>pode mudar entre sessoes OTAA</td>
+                </tr>
+                <tr>
+                  <td>AppKey/NwkKey</td>
+                  <td>segredos usados para derivar chaves</td>
+                  <td>nunca tratar como dado publico</td>
+                </tr>
+                <tr>
+                  <td>AppSKey</td>
+                  <td>protege payload de aplicacao</td>
+                  <td>separa aplicacao da rede</td>
+                </tr>
+                <tr>
+                  <td>FCntUp/FCntDown</td>
+                  <td>contadores de frame</td>
+                  <td>protegem contra replay</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3>Mensagens confirmadas</h3>
+            <p>Mensagem confirmada pede ACK. Isso parece atraente, mas custa downlink. Para telemetria periodica, normalmente use mensagem nao confirmada e trate perdas na aplicacao. Para comando critico, atuador ou alarme com confirmacao exigida, use confirmado com parcimonia.</p>
+
+            <h3>LoRaWAN Relay</h3>
+            <p>Relay e uma extensao para ajudar dispositivos que nao alcancam gateway diretamente, encaminhando mensagens por outro no. A resposta curta e que relay aumenta cobertura em casos especificos, mas adiciona complexidade, consumo e regras de seguranca/regiao.</p>
+
+            <h3>Limitacoes que caem em prova</h3>
+            <ul>
+              <li>LoRaWAN nao foi feito para streaming, baixa latencia garantida ou grandes arquivos frequentes.</li>
+              <li>Downlink e limitado por janelas de recepcao, gateway e regulacao.</li>
+              <li>Payload maximo depende de regiao e data rate.</li>
+              <li>SF alto aumenta alcance, mas reduz a capacidade da rede.</li>
+              <li>Rede publica/privada exige planejamento de chaves, tenants e gateways.</li>
+            </ul>
+          </section>
+
+          <section id="regionais">
+            <h2>Parametros regionais</h2>
+            <p>Parametros regionais definem frequencias, data rates, potencia, mascaras de canal, RX1/RX2, duty cycle e dwell time. Em prova, se join falha, sempre suspeite de regiao ou sub-banda errada.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Regiao</th>
+                  <th>Caracteristicas</th>
+                  <th>Atencao</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>EU868</td>
+                  <td>863-870 MHz; canais comuns 868.1, 868.3 e 868.5 MHz; duty cycle relevante</td>
+                  <td>calcular tempo de espera quando houver duty cycle</td>
+                </tr>
+                <tr>
+                  <td>US915</td>
+                  <td>902-928 MHz; muitos canais; sub-bands e channel masks</td>
+                  <td>dispositivo e gateway precisam usar a mesma sub-banda</td>
+                </tr>
+                <tr>
+                  <td>AU915 / Brasil</td>
+                  <td>915-928 MHz em muitos cenarios; comum em laboratorios brasileiros</td>
+                  <td>confirmar plano configurado no ChirpStack, gateway e firmware</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="note">
+              Para responder com seguranca: "o plano regional controla quais frequencias e data rates podem ser usados; por isso uma configuracao errada impede join, uplink, downlink ou ADR correto".
+            </div>
+            <h3>Tabela de diagnostico regional</h3>
+            <table class="dense-table">
+              <thead>
+                <tr>
+                  <th>Cenario</th>
+                  <th>Suspeita</th>
+                  <th>Acao</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Gateway ve pacotes, mas join nao completa</td>
+                  <td>RX2, JoinEUI/AppKey, MAC version ou regiao errada</td>
+                  <td>conferir eventos de join e parametros do device profile</td>
+                </tr>
+                <tr>
+                  <td>Nenhum uplink chega</td>
+                  <td>frequencia/sub-banda diferente entre device e gateway</td>
+                  <td>validar plano regional e channel mask</td>
+                </tr>
+                <tr>
+                  <td>EU868 com transmissoes muito frequentes</td>
+                  <td>duty cycle excedido</td>
+                  <td>calcular espera minima e reduzir airtime</td>
+                </tr>
+                <tr>
+                  <td>US915/AU915 em laboratorio</td>
+                  <td>sub-band incorreta</td>
+                  <td>alinhar firmware, gateway e ChirpStack</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section id="chirpstack">
+            <h2>ChirpStack</h2>
+            <p>ChirpStack e uma pilha open-source LoRaWAN. Na pratica de laboratorio, ele concentra cadastro de gateways, tenants, applications, device profiles, devices, chaves e integracoes.</p>
+            <h3>Componentes</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Componente</th>
+                  <th>Papel</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>ChirpStack</td>
+                  <td>servidor LoRaWAN principal na versao 4, com API e console</td>
+                </tr>
+                <tr>
+                  <td>Gateway Bridge</td>
+                  <td>converte protocolo de gateway para MQTT</td>
+                </tr>
+                <tr>
+                  <td>MQTT broker</td>
+                  <td>transporta eventos de uplink e comandos de downlink</td>
+                </tr>
+                <tr>
+                  <td>PostgreSQL</td>
+                  <td>persistencia de configuracoes e entidades</td>
+                </tr>
+                <tr>
+                  <td>Redis</td>
+                  <td>cache/estado/filas conforme instalacao</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3>Cadastro OTAA</h3>
+            <ol>
+              <li>Configurar a regiao correta no ChirpStack.</li>
+              <li>Cadastrar gateway e confirmar status online.</li>
+              <li>Criar tenant e application.</li>
+              <li>Criar device profile com regiao, MAC version e classe corretas.</li>
+              <li>Cadastrar device com DevEUI, JoinEUI e AppKey.</li>
+              <li>Iniciar join no dispositivo.</li>
+              <li>Conferir eventos de join e uplink.</li>
+            </ol>
+
+            <h3>Topicos MQTT comuns</h3>
+            <div class="formula"><code>application/&lt;application_id&gt;/device/&lt;dev_eui&gt;/event/up
+application/&lt;application_id&gt;/device/&lt;dev_eui&gt;/command/down
+gateway/&lt;gateway_id&gt;/event/up
+gateway/&lt;gateway_id&gt;/command/down</code></div>
+            <p>O formato exato pode variar com a integracao/configuracao, mas a ideia e sempre separar eventos de uplink e comandos de downlink.</p>
+
+            <h3>Troubleshooting</h3>
+            <ul>
+              <li>Gateway offline: verificar rede IP, concentrador, Gateway Bridge, broker MQTT e logs.</li>
+              <li>Join falha: verificar regiao, sub-banda, DevEUI, JoinEUI, AppKey, MAC version, RX2.</li>
+              <li>Uplink sem payload legivel: verificar codec, FPort e criptografia.</li>
+              <li>Downlink nao chega: verificar classe, RX1/RX2, fila de downlink, gateway selecionado e limites regionais.</li>
+              <li>ABP parou apos reset: suspeitar de frame counter reiniciado.</li>
+            </ul>
+          </section>
+
+          <section id="chirpstack-expandido">
+            <h2>ChirpStack expandido</h2>
+            <p class="lead">Complemento das paginas ChirpStack v4 sobre tenants, applications, device profiles, devices, gateways, MQTT, Gateway Bridge, MQTT Forwarder e Concentratord.</p>
+
+            <h3>Modelo mental do cadastro</h3>
+            <div class="formula"><code>Tenant
+  -> Device Profiles
+  -> Gateways
+  -> Applications
+       -> Devices
+            -> OTAA/ABP, keys, tags, variables, codec</code></div>
+            <p><strong>Tenant</strong> representa uma organizacao ou separacao administrativa. <strong>Application</strong> agrupa dispositivos de uma solucao. <strong>Device profile</strong> descreve capacidades e parametros LoRaWAN. <strong>Device</strong> guarda DevEUI, ativacao e configuracoes do sensor. <strong>Gateway</strong> representa o concentrador fisico.</p>
+
+            <h3>Device profile</h3>
+            <table class="dense-table">
+              <thead>
+                <tr>
+                  <th>Campo/decisao</th>
+                  <th>Por que importa</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Regiao</td>
+                  <td>define frequencias e data rates; erro impede join/uplink correto</td>
+                </tr>
+                <tr>
+                  <td>MAC version</td>
+                  <td>precisa ser compativel com firmware do dispositivo</td>
+                </tr>
+                <tr>
+                  <td>Regional parameters revision</td>
+                  <td>alinha comportamento com a revisao regional suportada</td>
+                </tr>
+                <tr>
+                  <td>Classe B/C</td>
+                  <td>habilita recursos de recepcao alem da Classe A</td>
+                </tr>
+                <tr>
+                  <td>Codec</td>
+                  <td>decodifica payload binario em campos compreensiveis</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3>MQTT no ChirpStack</h3>
+            <p>MQTT transporta eventos e comandos. A aplicacao assina eventos de uplink, join, ack e status; para downlink, publica um comando no topico apropriado para agendar a transmissao.</p>
+            <div class="formula"><code>event/up      -> payload recebido do dispositivo
+event/join    -> join OTAA aceito
+event/ack     -> confirmacao de mensagem
+event/status  -> status periodico
+command/down  -> enfileirar downlink</code></div>
+
+            <h3>Componentes de gateway</h3>
+            <table class="dense-table">
+              <thead>
+                <tr>
+                  <th>Componente</th>
+                  <th>Funcao</th>
+                  <th>Quando citar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Gateway Bridge</td>
+                  <td>traduz protocolo de gateway para MQTT</td>
+                  <td>gateway Semtech UDP/Basics Station integrado ao servidor</td>
+                </tr>
+                <tr>
+                  <td>MQTT Forwarder</td>
+                  <td>encaminha pacotes do gateway via MQTT</td>
+                  <td>arquitetura simplificada usando broker MQTT</td>
+                </tr>
+                <tr>
+                  <td>Concentratord</td>
+                  <td>gerencia concentrador LoRa no gateway</td>
+                  <td>gateway Linux com concentrador local</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3>Ordem recomendada de troubleshooting</h3>
+            <ol>
+              <li>Confirmar se o gateway esta online e enviando estatisticas.</li>
+              <li>Conferir regiao/sub-banda do gateway e device profile.</li>
+              <li>Verificar DevEUI, JoinEUI e AppKey para OTAA.</li>
+              <li>Checar eventos MQTT e logs do Gateway Bridge/Forwarder.</li>
+              <li>Validar FPort e codec se uplink chega sem decode.</li>
+              <li>Para downlink, confirmar classe, janela RX e limites regionais.</li>
+            </ol>
+          </section>
+
+          <section id="troubleshooting">
+            <h2>Troubleshooting de prova</h2>
+            <p class="lead">Use esta tabela para responder questoes de diagnostico rapidamente.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Sintoma</th>
+                  <th>Causa provavel</th>
+                  <th>Como responder</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Join Request aparece, mas Join Accept nao resolve</td>
+                  <td>AppKey/JoinEUI/MAC version/RX2 incorretos</td>
+                  <td>validar credenciais OTAA e perfil regional no servidor</td>
+                </tr>
+                <tr>
+                  <td>Nenhum pacote chega ao servidor</td>
+                  <td>gateway offline, MQTT parado ou frequencia errada</td>
+                  <td>checar status do gateway, broker, logs e plano regional</td>
+                </tr>
+                <tr>
+                  <td>Uplink chega duplicado</td>
+                  <td>varios gateways receberam o mesmo frame</td>
+                  <td>e normal; Network Server faz deduplicacao</td>
+                </tr>
+                <tr>
+                  <td>Payload aparece como bytes sem significado</td>
+                  <td>codec ausente ou FPort incorreto</td>
+                  <td>configurar decoder e confirmar porta de aplicacao</td>
+                </tr>
+                <tr>
+                  <td>ABP falha apos reiniciar device</td>
+                  <td>frame counter voltou</td>
+                  <td>preservar contador ou usar OTAA</td>
+                </tr>
+                <tr>
+                  <td>RSSI forte, SNR ruim</td>
+                  <td>ruido/interferencia</td>
+                  <td>avaliar canal, antena, ambiente RF e BW</td>
+                </tr>
+                <tr>
+                  <td>Downlink demora ou nao chega</td>
+                  <td>classe, janelas RX, duty cycle ou gateway ocupado</td>
+                  <td>confirmar Classe A/B/C, RX1/RX2 e fila de downlink</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section id="calculos">
+            <h2>Calculos com passo a passo</h2>
+            <p class="lead">As calculadoras abaixo rodam localmente. Use os resultados como guia e confira a logica nos passos exibidos.</p>
+
+            <h3>Formulas essenciais</h3>
+            <div class="grid">
+              <div class="formula"><code>dBm = 10 log10(P_mW)
+P_mW = 10^(dBm/10)
+P_W = P_mW/1000</code></div>
+              <div class="formula"><code>EIRP = Ptx + G_ant(dBi) - perdas
+ERP = EIRP - 2,15</code></div>
+              <div class="formula"><code>N = -174 + 10 log10(BW_Hz) + NF
+SNR = RSSI - N</code></div>
+              <div class="formula"><code>Perda_max = Ptx + Gtx + Grx - perdas - sensibilidade
+Margem = Prx - sensibilidade</code></div>
+              <div class="formula"><code>Tsym = 2^SF / BW
+Rb ~= SF * BW/2^SF * 4/(4+CR)</code></div>
+              <div class="formula"><code>Espera = airtime * (1/duty - 1)</code></div>
+            </div>
+
+            <div class="calc-grid">
+              <article class="calc">
+                <h3>dBm para mW/W</h3>
+                <label>dBm <input id="power-dbm" type="number" step="0.1" value="14"></label>
+                <div id="power-result" class="result" aria-live="polite"></div>
+              </article>
+
+              <article class="calc">
+                <h3>EIRP e ERP</h3>
+                <label>Ptx (dBm) <input id="eirp-ptx" type="number" step="0.1" value="14"></label>
+                <label>Ganho da antena (dBi) <input id="eirp-gain" type="number" step="0.1" value="3"></label>
+                <label>Perdas (dB) <input id="eirp-loss" type="number" step="0.1" value="1.5"></label>
+                <div id="eirp-result" class="result" aria-live="polite"></div>
+              </article>
+
+              <article class="calc">
+                <h3>Ruido, RSSI e SNR</h3>
+                <label>RSSI (dBm) <input id="noise-rssi" type="number" step="0.1" value="-120"></label>
+                <label>BW (kHz) <input id="noise-bw" type="number" step="1" value="125"></label>
+                <label>Noise figure NF (dB) <input id="noise-nf" type="number" step="0.1" value="6"></label>
+                <div id="noise-result" class="result" aria-live="polite"></div>
+              </article>
+
+              <article class="calc">
+                <h3>Link budget</h3>
+                <label>Ptx (dBm) <input id="link-ptx" type="number" step="0.1" value="14"></label>
+                <label>Gtx (dBi) <input id="link-gtx" type="number" step="0.1" value="2"></label>
+                <label>Grx (dBi) <input id="link-grx" type="number" step="0.1" value="2"></label>
+                <label>Perdas totais (dB) <input id="link-loss" type="number" step="0.1" value="2"></label>
+                <label>Sensibilidade (dBm) <input id="link-sens" type="number" step="0.1" value="-137"></label>
+                <label>Perda de caminho (dB) <input id="link-path" type="number" step="0.1" value="145"></label>
+                <div id="link-result" class="result" aria-live="polite"></div>
+              </article>
+
+              <article class="calc">
+                <h3>Airtime LoRa</h3>
+                <label>SF
+                  <select id="air-sf">
+                    <option value="7" selected>SF7</option>
+                    <option value="8">SF8</option>
+                    <option value="9">SF9</option>
+                    <option value="10">SF10</option>
+                    <option value="11">SF11</option>
+                    <option value="12">SF12</option>
+                  </select>
+                </label>
+                <label>BW (kHz)
+                  <select id="air-bw">
+                    <option value="125" selected>125</option>
+                    <option value="250">250</option>
+                    <option value="500">500</option>
+                  </select>
+                </label>
+                <label>CR
+                  <select id="air-cr">
+                    <option value="1" selected>4/5</option>
+                    <option value="2">4/6</option>
+                    <option value="3">4/7</option>
+                    <option value="4">4/8</option>
+                  </select>
+                </label>
+                <label>Payload (bytes) <input id="air-pl" type="number" step="1" value="20"></label>
+                <label>Preambulo (simbolos) <input id="air-pre" type="number" step="1" value="8"></label>
+                <label>CRC
+                  <select id="air-crc">
+                    <option value="1" selected>ligado</option>
+                    <option value="0">desligado</option>
+                  </select>
+                </label>
+                <label>Cabecalho
+                  <select id="air-header">
+                    <option value="explicit" selected>explicito</option>
+                    <option value="implicit">implicito</option>
+                  </select>
+                </label>
+                <label>Low data rate optimization
+                  <select id="air-de">
+                    <option value="auto" selected>auto</option>
+                    <option value="on">forcar ligado</option>
+                    <option value="off">forcar desligado</option>
+                  </select>
+                </label>
+                <div id="air-result" class="result" aria-live="polite"></div>
+              </article>
+
+              <article class="calc">
+                <h3>Comparar airtime SF7-SF12</h3>
+                <label>BW (kHz)
+                  <select id="cmp-bw">
+                    <option value="125" selected>125</option>
+                    <option value="250">250</option>
+                    <option value="500">500</option>
+                  </select>
+                </label>
+                <label>CR
+                  <select id="cmp-cr">
+                    <option value="1" selected>4/5</option>
+                    <option value="2">4/6</option>
+                    <option value="3">4/7</option>
+                    <option value="4">4/8</option>
+                  </select>
+                </label>
+                <label>Payload (bytes) <input id="cmp-pl" type="number" step="1" value="20"></label>
+                <label>Preambulo (simbolos) <input id="cmp-pre" type="number" step="1" value="8"></label>
+                <div id="cmp-result" class="result" aria-live="polite"></div>
+              </article>
+
+              <article class="calc">
+                <h3>Duty cycle</h3>
+                <label>Airtime (ms) <input id="duty-air" type="number" step="0.001" value="56.576"></label>
+                <label>Duty cycle (%) <input id="duty-percent" type="number" step="0.01" value="1"></label>
+                <div id="duty-result" class="result" aria-live="polite"></div>
+              </article>
+
+              <article class="calc">
+                <h3>Margem ADR</h3>
+                <label>SF atual
+                  <select id="adr-sf">
+                    <option value="7">SF7</option>
+                    <option value="8">SF8</option>
+                    <option value="9">SF9</option>
+                    <option value="10" selected>SF10</option>
+                    <option value="11">SF11</option>
+                    <option value="12">SF12</option>
+                  </select>
+                </label>
+                <label>SNR medido (dB) <input id="adr-snr" type="number" step="0.1" value="-8"></label>
+                <label>Margem ADR configurada (dB) <input id="adr-margin" type="number" step="0.1" value="2.5"></label>
+                <div id="adr-result" class="result" aria-live="polite"></div>
+              </article>
+            </div>
+          </section>
+
+          <section id="glossario">
+            <h2>Glossario expandido</h2>
+            <p class="lead">Termos recorrentes nas fontes TTN, ChirpStack e LoRa Alliance.</p>
+            <div class="glossary-grid">
+              <article class="term-card"><h3>ADR</h3><p>Adaptive Data Rate. Ajusta data rate/SF e potencia conforme margem de enlace.</p></article>
+              <article class="term-card"><h3>ABP</h3><p>Activation By Personalization. Ativacao manual com DevAddr e chaves fixas.</p></article>
+              <article class="term-card"><h3>Application Server</h3><p>Servidor que entrega payload de aplicacao e integra com sistemas externos.</p></article>
+              <article class="term-card"><h3>AppSKey</h3><p>Chave de sessao usada para criptografar/descriptografar payload de aplicacao.</p></article>
+              <article class="term-card"><h3>BW</h3><p>Bandwidth. Largura de banda da modulacao LoRa, como 125, 250 ou 500 kHz.</p></article>
+              <article class="term-card"><h3>CR</h3><p>Coding Rate. Redundancia de correcao de erro, como 4/5 a 4/8.</p></article>
+              <article class="term-card"><h3>DevAddr</h3><p>Endereco curto de sessao usado pelo dispositivo em uma rede LoRaWAN.</p></article>
+              <article class="term-card"><h3>DevEUI</h3><p>Identificador global do dispositivo final.</p></article>
+              <article class="term-card"><h3>Downlink</h3><p>Mensagem da rede para o dispositivo. E recurso escasso em LoRaWAN.</p></article>
+              <article class="term-card"><h3>EIRP</h3><p>Potencia isotropica radiada equivalente: potencia + ganho - perdas.</p></article>
+              <article class="term-card"><h3>FCnt</h3><p>Frame counter. Ajuda a evitar replay e problemas de sincronismo.</p></article>
+              <article class="term-card"><h3>FEC</h3><p>Forward Error Correction. Redundancia para recuperar erro de transmissao.</p></article>
+              <article class="term-card"><h3>FPort</h3><p>Porta do frame LoRaWAN usada para separar aplicacao/MAC conforme contexto.</p></article>
+              <article class="term-card"><h3>Gateway Bridge</h3><p>Componente que traduz protocolo de gateway para MQTT no ecossistema ChirpStack.</p></article>
+              <article class="term-card"><h3>JoinEUI</h3><p>Identificador do contexto/servidor de join em OTAA.</p></article>
+              <article class="term-card"><h3>LR-FHSS</h3><p>Long Range Frequency Hopping Spread Spectrum, camada fisica robusta por saltos de frequencia.</p></article>
+              <article class="term-card"><h3>MIC</h3><p>Message Integrity Code. Valida integridade e autenticidade do frame.</p></article>
+              <article class="term-card"><h3>Network Server</h3><p>Servidor que valida, deduplica, controla MAC/ADR e agenda downlink.</p></article>
+              <article class="term-card"><h3>OTAA</h3><p>Over-The-Air Activation. Metodo recomendado de join e derivacao de chaves.</p></article>
+              <article class="term-card"><h3>RSSI</h3><p>Received Signal Strength Indicator. Potencia recebida em dBm.</p></article>
+              <article class="term-card"><h3>RX1/RX2</h3><p>Janelas de recepcao abertas apos uplink em dispositivos Classe A.</p></article>
+              <article class="term-card"><h3>SF</h3><p>Spreading Factor. Controla robustez, taxa e airtime da modulacao LoRa.</p></article>
+              <article class="term-card"><h3>SNR</h3><p>Signal-to-Noise Ratio. Diferenca em dB entre sinal e ruido.</p></article>
+              <article class="term-card"><h3>Uplink</h3><p>Mensagem do dispositivo para a rede.</p></article>
+            </div>
+          </section>
+
+          <section id="simulado">
+            <h2>Simulado comentado</h2>
+            <p class="lead">Questoes provaveis, com respostas curtas no estilo de prova.</p>
+
+            <article class="question">
+              <h3>1. Diferencie LoRa e LoRaWAN.</h3>
+              <div class="answer">LoRa e a camada fisica de radio. LoRaWAN e o protocolo MAC/rede que usa LoRa/LR-FHSS e define arquitetura, seguranca, classes, ativacao e parametros regionais.</div>
+            </article>
+
+            <article class="question">
+              <h3>2. Por que SF12 tem maior alcance, mas pior capacidade?</h3>
+              <div class="answer">SF12 permite decodificar sinais mais fracos, mas aumenta o tempo de simbolo. Como `Tsym = 2^SF/BW`, o airtime cresce muito e reduz a capacidade do canal.</div>
+            </article>
+
+            <article class="question">
+              <h3>3. Calcule 20 dBm em mW.</h3>
+              <div class="answer">`P_mW = 10^(20/10) = 10^2 = 100 mW`.</div>
+            </article>
+
+            <article class="question">
+              <h3>4. Calcule EIRP para Ptx 14 dBm, antena 5 dBi e perdas 2 dB.</h3>
+              <div class="answer">`EIRP = 14 + 5 - 2 = 17 dBm`.</div>
+            </article>
+
+            <article class="question">
+              <h3>5. Um enlace tem Ptx 14 dBm, Gtx 2 dBi, Grx 2 dBi, perdas 2 dB e sensibilidade -137 dBm. Qual a perda maxima?</h3>
+              <div class="answer">`Perda maxima = 14 + 2 + 2 - 2 - (-137) = 153 dB`.</div>
+            </article>
+
+            <article class="question">
+              <h3>6. Se o enlace anterior tiver perda de caminho 148 dB, qual a margem?</h3>
+              <div class="answer">`Prx = 14 + 2 + 2 - 2 - 148 = -132 dBm`. Margem: `-132 - (-137) = 5 dB`.</div>
+            </article>
+
+            <article class="question">
+              <h3>7. Quando usar OTAA em vez de ABP?</h3>
+              <div class="answer">Sempre que possivel. OTAA faz join e deriva chaves de sessao, melhorando seguranca e administracao. ABP e util em casos simples, mas tem mais risco com contadores e chaves fixas.</div>
+            </article>
+
+            <article class="question">
+              <h3>8. O que verificar se um device nao faz join no ChirpStack?</h3>
+              <div class="answer">Gateway online, regiao/sub-banda, DevEUI, JoinEUI, AppKey, MAC version, RX2, logs do Gateway Bridge/MQTT e eventos de join.</div>
+            </article>
+
+            <article class="question">
+              <h3>9. Para que serve ADR?</h3>
+              <div class="answer">ADR ajusta taxa e potencia usando historico do enlace. Ele reduz airtime e consumo quando ha margem, especialmente em dispositivos fixos.</div>
+            </article>
+
+            <article class="question">
+              <h3>10. O que e LR-FHSS?</h3>
+              <div class="answer">E uma camada fisica de longo alcance com saltos de frequencia e codificacao robusta. Ajuda em redes densas, longo alcance e satelite, mas nao aumenta a taxa para aplicacoes pesadas.</div>
+            </article>
+
+            <article class="question">
+              <h3>11. Qual a diferenca entre RSSI e SNR?</h3>
+              <div class="answer">RSSI mede potencia recebida em dBm. SNR mede a relacao entre sinal e ruido em dB. Um RSSI forte pode coexistir com SNR ruim se houver muito ruido.</div>
+            </article>
+
+            <article class="question">
+              <h3>12. Por que o gateway nao e o Network Server?</h3>
+              <div class="answer">O gateway so faz ponte radio-IP e encaminha metadados. O Network Server valida MIC, deduplica, gerencia MAC/ADR e escolhe downlink.</div>
+            </article>
+
+            <article class="question">
+              <h3>13. O que e device profile no ChirpStack?</h3>
+              <div class="answer">E o perfil que descreve regiao, MAC version, revisao regional, classe, codec e capacidades LoRaWAN usadas pelos devices associados.</div>
+            </article>
+
+            <article class="question">
+              <h3>14. Um uplink foi recebido por tres gateways. Isso e problema?</h3>
+              <div class="answer">Nao. Em LoRaWAN isso e esperado. O Network Server deduplica e usa metadados para qualidade de enlace e escolha de downlink.</div>
+            </article>
+
+            <article class="question">
+              <h3>15. Por que duty cycle afeta mais EU868?</h3>
+              <div class="answer">Porque a regulacao europeia limita a fracao de tempo em que se pode transmitir em certas subfaixas. Depois de transmitir, e preciso respeitar tempo de espera.</div>
+            </article>
+
+            <article class="question">
+              <h3>16. Qual a causa comum de falha em US915/AU915?</h3>
+              <div class="answer">Sub-banda/channel mask diferente entre dispositivo, gateway e servidor. O device transmite em canais que o gateway nao esta ouvindo.</div>
+            </article>
+
+            <article class="question">
+              <h3>17. Para que serve o MIC?</h3>
+              <div class="answer">O MIC verifica integridade e autenticidade do frame. Se o frame for alterado ou a chave estiver errada, a validacao falha.</div>
+            </article>
+
+            <article class="question">
+              <h3>18. Quando usar Classe C?</h3>
+              <div class="answer">Quando o dispositivo pode manter o receptor quase sempre aberto, tipicamente alimentado pela rede eletrica, e precisa receber downlinks com baixa espera.</div>
+            </article>
+
+            <article class="question">
+              <h3>19. O que acontece se aumentar BW mantendo SF?</h3>
+              <div class="answer">O tempo de simbolo diminui, a taxa aumenta e o airtime cai, mas a sensibilidade tende a piorar.</div>
+            </article>
+
+            <article class="question">
+              <h3>20. O que conferir se o payload chega mas nao decodifica?</h3>
+              <div class="answer">FPort, codec/decoder da application, formato binario enviado pelo firmware e chaves de aplicacao.</div>
+            </article>
+          </section>
+
+          <section id="fontes-analisadas">
+            <h2>Fontes analisadas</h2>
+            <p class="lead">A coleta recursiva focada esta registrada em <code>data/source-map.json</code>. As fichas abaixo indicam como cada grupo foi usado.</p>
+            <div class="source-cards">
+              <article class="source-card">
+                <h3>TTN LoRaWAN</h3>
+                <p>Foram analisadas 32 paginas sob <code>/docs/lorawan/</code>, cobrindo arquitetura, classes, ADR, ativacao, seguranca, RSSI/SNR, EIRP/ERP, duty cycle, planos regionais, formato PHY, mensagens, antenas, transceivers e glossario.</p>
+                <p><strong>Uso no HTML:</strong> base principal de LoRaWAN, LoRa PHY, calculos e erros comuns.</p>
+                <a href="https://www.thethingsnetwork.org/docs/lorawan/">Fonte original</a>
+              </article>
+              <article class="source-card">
+                <h3>ChirpStack v4</h3>
+                <p>Foram usadas paginas de arquitetura, configuracao, tenants, applications, device profiles, devices, gateways, MQTT, Gateway Bridge, MQTT Forwarder e Concentratord.</p>
+                <p><strong>Uso no HTML:</strong> cadastro OTAA, troubleshooting, MQTT e modelo operacional.</p>
+                <a href="https://www.chirpstack.io/docs/">Fonte original</a>
+              </article>
+              <article class="source-card">
+                <h3>MOKO em portugues</h3>
+                <p>A pagina em portugues foi usada como apoio conceitual sobre LoRa, LoRaWAN, elementos de rede e casos de uso.</p>
+                <p><strong>Uso no HTML:</strong> reforco de definicoes em PT-BR.</p>
+                <a href="https://www.mokolora.com/pt/full-understanding-of-lora-and-lorawan/">Fonte original</a>
+              </article>
+              <article class="source-card">
+                <h3>LoRa Alliance</h3>
+                <p>TS001 e RP002 foram tratadas como referencias normativas para MAC, seguranca, classes e parametros regionais. O HTML usa resumo proprio.</p>
+                <p><strong>Uso no HTML:</strong> base normativa para evitar contradicoes conceituais.</p>
+                <a href="https://resources.lora-alliance.org/getting-started-with-lorawan/ts001-1-0-4-lorawan-l2-1-0-4-specification">TS001</a>
+              </article>
+              <article class="source-card">
+                <h3>Video do email</h3>
+                <p>O link foi preservado como referencia secundaria. O material offline nao depende de transcricao do YouTube.</p>
+                <p><strong>Uso no HTML:</strong> topicos gerais de revisao LoRaWAN.</p>
+                <a href="https://www.youtube.com/watch?v=9NjgRWlvw44">Fonte original</a>
+              </article>
+            </div>
+          </section>
+
+          <section id="fontes">
+            <h2>Fontes e rastreabilidade</h2>
+            <p>O material local foi escrito com resumo proprio em portugues. Estes links ficam para revisao fora da prova.</p>
+            <ul class="source-list">
+              <li><a href="https://www.thethingsnetwork.org/docs/lorawan/">The Things Network - LoRaWAN</a></li>
+              <li><a href="https://www.thethingsnetwork.org/docs/lorawan/architecture/">TTN - Architecture</a></li>
+              <li><a href="https://www.thethingsnetwork.org/docs/lorawan/spreading-factors/">TTN - Spreading Factors</a></li>
+              <li><a href="https://www.thethingsnetwork.org/docs/lorawan/adaptive-data-rate/">TTN - Adaptive Data Rate</a></li>
+              <li><a href="https://www.thethingsnetwork.org/docs/lorawan/db-dbm-dbi-dbd/">TTN - dB, dBm, dBi and dBd</a></li>
+              <li><a href="https://www.thethingsnetwork.org/docs/lorawan/eirp-and-erp/">TTN - EIRP and ERP</a></li>
+              <li><a href="https://www.thethingsnetwork.org/docs/lorawan/rssi-and-snr/">TTN - RSSI and SNR</a></li>
+              <li><a href="https://www.chirpstack.io/docs/">ChirpStack Docs v4</a></li>
+              <li><a href="https://www.chirpstack.io/docs/architecture.html?highlight=multi">ChirpStack Architecture</a></li>
+              <li><a href="https://resources.lora-alliance.org/getting-started-with-lorawan/ts001-1-0-4-lorawan-l2-1-0-4-specification">LoRa Alliance - TS001-1.0.4</a></li>
+              <li><a href="https://resources.lora-alliance.org/document/rp002-1-0-5-lorawan-regional-parameters">LoRa Alliance - RP002 Regional Parameters</a></li>
+              <li><a href="https://www.mokolora.com/pt/full-understanding-of-lora-and-lorawan/">MOKO - Compreensao total de LoRa e LoRaWAN</a></li>
+              <li><a href="https://www.youtube.com/watch?v=9NjgRWlvw44">Video indicado no email</a></li>
+            </ul>
+          </section>
+        </main>
+
+        <footer class="footer">
+          Material preparado para uso offline. Arquivos complementares: docs/01-guia-de-estudo.md, docs/02-formulas-e-calculos.md, docs/03-simulado.md, docs/04-fontes.md, docs/05-base-expandida.md, docs/06-fichas-fontes.md e data/source-map.json.
+        </footer>
+      </div>
+    </div>
+    <script src="assets/calculadoras.js"></script>
+    <script src="assets/search.js"></script>
+  </body>
+</html>
