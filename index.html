@@ -16,13 +16,16 @@
         <nav class="nav" aria-label="Navegacao principal">
           <a href="#resumo">Resumo</a>
           <a href="#como-responder">Como responder</a>
+          <a href="#auditoria-prova">Auditoria da prova</a>
           <a href="#ementa">Ementa ET7GM</a>
           <a href="#indice-assuntos">Indice por assunto</a>
           <a href="#rssf">RSSF, IoT e LPWAN</a>
           <a href="#osi">Modelo OSI</a>
+          <a href="#acesso-meio">Acesso ao meio</a>
           <a href="#roteamento">Roteamento</a>
           <a href="#tecnologias-baixo-consumo">Tecnologias baixo consumo</a>
           <a href="#aplicacoes">Aplicacoes</a>
+          <a href="#planejamento-implantacao">Planejamento</a>
           <a href="#lora">LoRa</a>
           <a href="#lora-expandido">LoRa PHY expandido</a>
           <a href="#lrfhss">LR-FHSS</a>
@@ -31,6 +34,7 @@
           <a href="#regionais">Parametros regionais</a>
           <a href="#chirpstack">ChirpStack</a>
           <a href="#chirpstack-expandido">ChirpStack expandido</a>
+          <a href="#backend-onboarding-certificacao">Backend/onboarding</a>
           <a href="#troubleshooting">Troubleshooting</a>
           <a href="#calculos">Calculos</a>
           <a href="#pegadinhas">Pegadinhas</a>
@@ -125,6 +129,60 @@
             </div>
           </section>
 
+          <section id="auditoria-prova">
+            <h2>Auditoria critica do que pode cair</h2>
+            <p class="lead">Esta matriz foi montada a partir da ementa da disciplina e dos PDFs baixados. Ela indica o minimo que uma resposta precisa ter para ficar defensavel.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Se a prova pedir</th>
+                  <th>Inclua obrigatoriamente</th>
+                  <th>Evite responder so com</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Caracteristicas de RSSF</td>
+                  <td>nos sensores, sink/gateway, energia, comunicacao sem fio, baixa taxa, falhas, escalabilidade e agregacao</td>
+                  <td>"e uma rede Wi-Fi de sensores"</td>
+                </tr>
+                <tr>
+                  <td>Modelo OSI</td>
+                  <td>camada fisica, MAC/enlace, rede/roteamento, transporte e aplicacao, com exemplo em LoRaWAN</td>
+                  <td>decorar nomes sem mapear para sensores</td>
+                </tr>
+                <tr>
+                  <td>Roteamento</td>
+                  <td>objetivo energetico, tipo de topologia, caminho ao sink e impacto de falhas</td>
+                  <td>apenas "menor caminho"</td>
+                </tr>
+                <tr>
+                  <td>Acesso ao meio</td>
+                  <td>ALOHA, ausencia de escuta do canal em LoRaWAN, colisao, airtime, canais e SF</td>
+                  <td>confundir MAC com roteamento</td>
+                </tr>
+                <tr>
+                  <td>Tecnologias baixo consumo</td>
+                  <td>alcance, consumo, taxa, topologia, custo e infraestrutura</td>
+                  <td>escolher LoRaWAN para tudo</td>
+                </tr>
+                <tr>
+                  <td>Projeto/implantacao</td>
+                  <td>requisitos da aplicacao, ambiente, gateway, antena, topografia, RSSI, SNR, perda e plano regional</td>
+                  <td>citar alcance nominal sem contexto</td>
+                </tr>
+                <tr>
+                  <td>LoRaWAN oficial</td>
+                  <td>classes, OTAA/ABP, chaves, contadores, RX1/RX2, ADR, AU915 e separacao NS/JS/AS</td>
+                  <td>misturar gateway, Network Server e Application Server</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="note">
+              <strong>Resposta de emergencia:</strong> defina o conceito, cite o principal trade-off, aplique ao caso da questao e feche com uma limitacao.
+            </div>
+          </section>
+
           <section id="ementa">
             <h2>Ementa ET7GM e mapa de estudo</h2>
             <p class="lead">A ementa oficial da disciplina resume o que precisa estar dominado para a prova. O LoRaWAN aparece aqui como estudo de caso forte de RSSF/LPWAN.</p>
@@ -149,8 +207,8 @@
                 </tr>
                 <tr>
                   <td>Roteamento para RSSF</td>
-                  <td>roteamento direto, flooding, cluster, geografico, data-centric, multipath, LEACH e RPL</td>
-                  <td><a href="#roteamento">Roteamento</a></td>
+                  <td>roteamento direto, flooding, cluster, geografico, data-centric, multipath, LEACH, RPL e diferenca entre roteamento e acesso ao meio</td>
+                  <td><a href="#roteamento">Roteamento</a>, <a href="#acesso-meio">Acesso ao meio</a></td>
                 </tr>
                 <tr>
                   <td>Tecnologias de comunicacao de baixo consumo energetico</td>
@@ -159,8 +217,8 @@
                 </tr>
                 <tr>
                   <td>Aplicacoes de RSSF</td>
-                  <td>casos de uso e seus requisitos: agricultura, industria, cidades, ambiente, saude e logistica</td>
-                  <td><a href="#aplicacoes">Aplicacoes</a>, <a href="#questoes-provaveis">Questoes provaveis</a></td>
+                  <td>casos de uso, requisitos, planejamento de gateway, metricas de campo e integracao com aplicacao</td>
+                  <td><a href="#aplicacoes">Aplicacoes</a>, <a href="#planejamento-implantacao">Planejamento</a>, <a href="#questoes-provaveis">Questoes provaveis</a></td>
                 </tr>
               </tbody>
             </table>
@@ -174,6 +232,11 @@
                 <h3>Ementa geral</h3>
                 <p>RSSF, OSI, roteamento, tecnologias de baixo consumo e aplicacoes. Use estes topicos para nao ficar preso apenas em LoRaWAN.</p>
                 <div class="tag-row"><span class="tag">RSSF</span><span class="tag">OSI</span><span class="tag">Roteamento</span></div>
+              </article>
+              <article class="topic-card">
+                <h3>Acesso ao meio</h3>
+                <p>ALOHA, colisoes, canais, SF, retransmissoes, duty cycle e capacidade. Essencial para explicar por que LoRaWAN escala com limites.</p>
+                <div class="tag-row"><span class="tag">ALOHA</span><span class="tag">Colisao</span><span class="tag">Capacidade</span></div>
               </article>
               <article class="topic-card">
                 <h3>LoRa PHY</h3>
@@ -204,6 +267,11 @@
                 <h3>Troubleshooting</h3>
                 <p>Join falhando, gateway offline, payload sem decode, downlink parado, contador ABP e configuracao regional errada.</p>
                 <div class="tag-row"><span class="tag">Join</span><span class="tag">RX2</span><span class="tag">FCnt</span></div>
+              </article>
+              <article class="topic-card">
+                <h3>Implantacao</h3>
+                <p>Posicionamento de gateway, antena, visada, topografia, ambiente urbano, RSSI, SNR, perda de pacotes e intervalo de envio.</p>
+                <div class="tag-row"><span class="tag">RSSI/SNR</span><span class="tag">Gateway</span><span class="tag">Campo</span></div>
               </article>
             </div>
           </section>
@@ -340,6 +408,64 @@
             </div>
             <h3>Resposta pronta</h3>
             <p>Em RSSF, a camada fisica define como o sinal e transmitido, a camada MAC controla o acesso ao meio, a camada de rede cuida de enderecamento/roteamento, e a aplicacao interpreta os dados medidos. Separar camadas facilita diagnostico e projeto.</p>
+          </section>
+
+          <section id="acesso-meio">
+            <h2>Acesso ao meio, ALOHA e capacidade</h2>
+            <p class="lead">O TCC da UNESP sobre multiplo acesso reforca um ponto facil de cair: em LoRaWAN, a capacidade da rede nao depende so do alcance; depende de como muitos dispositivos compartilham canais, SF e tempo no ar.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Conceito</th>
+                  <th>Resposta curta</th>
+                  <th>Impacto em LoRaWAN</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>ALOHA puro</td>
+                  <td>dispositivos transmitem quando precisam, sem escutar antes se o canal esta livre</td>
+                  <td>simples e economico, mas pode gerar colisao</td>
+                </tr>
+                <tr>
+                  <td>Colisao</td>
+                  <td>dois pacotes se sobrepoem no mesmo recurso de radio</td>
+                  <td>aumenta perda, retransmissao, consumo e reduz vazao util</td>
+                </tr>
+                <tr>
+                  <td>Canais</td>
+                  <td>frequencias disponiveis no plano regional</td>
+                  <td>mais canais bem configurados distribuem melhor o trafego</td>
+                </tr>
+                <tr>
+                  <td>Spreading Factor</td>
+                  <td>parametro fisico que muda taxa e robustez</td>
+                  <td>SFs diferentes ajudam a separar transmissoes, mas nao tornam a capacidade infinita</td>
+                </tr>
+                <tr>
+                  <td>Airtime</td>
+                  <td>tempo em que o pacote ocupa o canal</td>
+                  <td>quanto maior o airtime, maior a chance de colisao e menor a capacidade</td>
+                </tr>
+                <tr>
+                  <td>Retransmissao</td>
+                  <td>nova tentativa apos perda ou falta de confirmacao</td>
+                  <td>melhora entrega, mas pode piorar congestionamento</td>
+                </tr>
+              </tbody>
+            </table>
+            <h3>Como diferenciar MAC, roteamento e PHY</h3>
+            <ul>
+              <li><strong>PHY:</strong> define a forma do sinal, como LoRa CSS, SF, BW e CR.</li>
+              <li><strong>MAC/acesso ao meio:</strong> define quando e como o dispositivo ocupa o canal.</li>
+              <li><strong>Roteamento:</strong> define por onde o dado caminha ate o destino.</li>
+              <li><strong>Em LoRaWAN:</strong> o acesso ao meio e simples/assincrono, e o "caminho" e estrela de estrelas via gateways e servidor.</li>
+            </ul>
+            <div class="warning">
+              <strong>Pegadinha:</strong> aumentar SF pode reduzir perda em distancia maior, mas tambem aumenta airtime. Em rede com muitos sensores, isso pode aumentar colisao e reduzir vazao.
+            </div>
+            <h3>Resposta pronta</h3>
+            <p>LoRaWAN usa acesso aleatorio semelhante ao ALOHA: o dispositivo transmite sem coordenacao fina com os outros. A capacidade depende de canais, SF, payload, airtime, duty cycle e quantidade de dispositivos. Por isso uma rede com muitos sensores deve reduzir airtime, evitar ACK desnecessario e distribuir bem canais/data rates.</p>
           </section>
 
           <section id="roteamento">
@@ -539,6 +665,62 @@
             <div class="note">
               <strong>Resposta pronta:</strong> primeiro descreva o dado medido, depois diga o requisito dominante. A tecnologia vem depois. Nao escolha LoRaWAN para tudo: ela e excelente para poucos bytes e longa autonomia, mas ruim para alta taxa e baixa latencia garantida.
             </div>
+          </section>
+
+          <section id="planejamento-implantacao">
+            <h2>Planejamento e avaliacao de uma RSSF</h2>
+            <p class="lead">Os PDFs da UTFPR e da UFPE mostram que uma resposta de projeto precisa sair do "alcance nominal" e falar de ambiente real: gateway, antena, obstaculos, topografia, RSSI, SNR, perda e integracao.</p>
+            <h3>Checklist de implantacao</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Etapa</th>
+                  <th>O que decidir</th>
+                  <th>Como justificar em prova</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Requisito</td>
+                  <td>grandeza medida, intervalo de envio, latencia, autonomia e criticidade</td>
+                  <td>a aplicacao define a tecnologia, nao o contrario</td>
+                </tr>
+                <tr>
+                  <td>Ambiente</td>
+                  <td>urbano, rural, industrial, indoor, relevo, obstrucoes e interferencia</td>
+                  <td>obstaculos podem pesar mais que distancia em linha reta</td>
+                </tr>
+                <tr>
+                  <td>Gateway</td>
+                  <td>altura, visada, antena, backhaul IP, energia e quantidade de canais</td>
+                  <td>gateway bem posicionado aumenta cobertura e reduz perda</td>
+                </tr>
+                <tr>
+                  <td>Plano regional</td>
+                  <td>AU915/Brasil, sub-banda, channel mask, RX1/RX2 e potencia</td>
+                  <td>configuracao regional errada derruba join e downlink</td>
+                </tr>
+                <tr>
+                  <td>Metricas</td>
+                  <td>RSSI, SNR, perda de pacotes, vazao, airtime e consumo</td>
+                  <td>avaliar RSSI sozinho e insuficiente</td>
+                </tr>
+                <tr>
+                  <td>Ajuste</td>
+                  <td>SF, BW, payload, periodo, ADR, antena e posicao do gateway</td>
+                  <td>melhorar alcance pode reduzir capacidade se aumentar airtime</td>
+                </tr>
+              </tbody>
+            </table>
+            <h3>Metricas de campo</h3>
+            <ul>
+              <li><strong>RSSI:</strong> potencia recebida. Valores menos negativos indicam sinal mais forte, mas nao garantem boa comunicacao.</li>
+              <li><strong>SNR:</strong> relacao sinal-ruido. Em LoRa pode ser negativa e ainda haver recepcao, mas SNR pior indica ambiente mais ruidoso.</li>
+              <li><strong>Taxa de perda:</strong> fracao de pacotes nao recebidos. Cresce com distancia, obstaculos, colisao, interferencia e configuracao inadequada.</li>
+              <li><strong>Vazao util:</strong> dados efetivamente entregues. Cai quando SF, airtime, retransmissoes e perdas aumentam.</li>
+            </ul>
+            <h3>Resposta pronta</h3>
+            <p>Para implantar uma RSSF/LoRaWAN, eu levantaria requisitos da aplicacao, escolheria a tecnologia pelo compromisso alcance-consumo-taxa, posicionaria gateways considerando altura e obstaculos, configuraria AU915/sub-banda corretamente e validaria em campo com RSSI, SNR, perda de pacotes e vazao. O resultado real depende do ambiente, nao apenas da distancia nominal.</p>
           </section>
 
           <section id="lora">
@@ -1201,6 +1383,87 @@ command/down  -> enfileirar downlink</code></div>
             </ol>
           </section>
 
+          <section id="backend-onboarding-certificacao">
+            <h2>Backend, onboarding e certificacao</h2>
+            <p class="lead">Este bloco resume os PDFs oficiais TS002, TR005 e TS009. Eles sao menos provaveis em conta numerica, mas ajudam em questoes sobre arquitetura oficial, cadastro de dispositivos e conformidade.</p>
+            <h3>Backend LoRaWAN oficial</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Elemento</th>
+                  <th>Funcao oficial</th>
+                  <th>Como usar na resposta</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Radio Gateway</td>
+                  <td>encaminha pacotes de radio para o Network Server e executa transmissoes solicitadas</td>
+                  <td>nao interpreta payload de aplicacao</td>
+                </tr>
+                <tr>
+                  <td>Network Server</td>
+                  <td>termina a camada MAC, valida MIC, deduplica, controla ADR/MAC e encaminha payload</td>
+                  <td>e o cerebro da rede LoRaWAN</td>
+                </tr>
+                <tr>
+                  <td>Join Server</td>
+                  <td>valida OTAA, conhece root keys e deriva chaves de sessao</td>
+                  <td>explica por que JoinEUI e AppKey/NwkKey precisam bater</td>
+                </tr>
+                <tr>
+                  <td>Application Server</td>
+                  <td>trata payload de aplicacao e entrega servico ao usuario</td>
+                  <td>onde codec, integracao e negocio aparecem</td>
+                </tr>
+                <tr>
+                  <td>Roaming</td>
+                  <td>permite trafego por redes parceiras usando papeis como home, serving e forwarding NS</td>
+                  <td>cite so se a questao falar de operadoras/redes diferentes</td>
+                </tr>
+              </tbody>
+            </table>
+            <h3>Onboarding e QR code</h3>
+            <ul>
+              <li>Onboarding e associar um dispositivo provisionado a um dono/rede/aplicacao.</li>
+              <li>Um QR LoRaWAN pode carregar dados como JoinEUI, DevEUI e ProfileID para facilitar cadastro.</li>
+              <li>ProfileID ajuda a identificar perfil de dispositivo ou formato de payload.</li>
+              <li>OwnerToken pode provar posse do dispositivo, mas nao deve ser tratado como chave secreta principal.</li>
+              <li>Chaves como AppKey/NwkKey nao devem ficar impressas externamente no equipamento.</li>
+            </ul>
+            <h3>Certificacao LoRaWAN</h3>
+            <p>TS009 descreve um protocolo de certificacao para validar se um end-device implementa corretamente comportamentos LoRaWAN. A ferramenta de teste controla o dispositivo por comandos de aplicacao, incluindo reset, join, troca de classe, ADR, duty cycle, periodicidade e eco de payload.</p>
+            <table class="dense-table">
+              <thead>
+                <tr>
+                  <th>Termo</th>
+                  <th>Resposta curta</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>DUT</td>
+                  <td>Device Under Test, o dispositivo sendo certificado</td>
+                </tr>
+                <tr>
+                  <td>LCTT/TCL</td>
+                  <td>ferramenta/camada de controle que conduz os testes</td>
+                </tr>
+                <tr>
+                  <td>FPort 224</td>
+                  <td>porta reservada para comandos de certificacao; deve ser desabilitada em producao</td>
+                </tr>
+                <tr>
+                  <td>Testes funcionais</td>
+                  <td>validam comportamento MAC, classes, janelas RX, duty cycle, ADR e limites regionais</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="note">
+              <strong>Resposta pronta:</strong> backend oficial separa Radio Gateway, Network Server, Join Server e Application Server. Essa separacao protege chaves, organiza join/roaming e evita que gateway ou aplicacao assumam funcoes de controle MAC que pertencem ao servidor de rede.
+            </div>
+          </section>
+
           <section id="troubleshooting">
             <h2>Troubleshooting de prova</h2>
             <p class="lead">Use esta tabela para responder questoes de diagnostico rapidamente.</p>
@@ -1515,6 +1778,26 @@ Rb ~= SF * BW/2^SF * 4/(4+CR)</code></div>
                   <td>LPWAN serve para poucos dados, longo alcance e baixa energia</td>
                   <td>"Nao use para video, audio ou alta taxa."</td>
                 </tr>
+                <tr>
+                  <td>Acesso ao meio e roteamento sao iguais</td>
+                  <td>Acesso ao meio decide quando usar o canal; roteamento decide por onde o dado vai</td>
+                  <td>"MAC ocupa o canal; roteamento escolhe caminho."</td>
+                </tr>
+                <tr>
+                  <td>Alcance nominal garante cobertura real</td>
+                  <td>Obstaculos, relevo, antena, altura, ruido e instalacao mudam o resultado</td>
+                  <td>"Teste em campo com RSSI, SNR e perda."</td>
+                </tr>
+                <tr>
+                  <td>QR code contem tudo que e secreto</td>
+                  <td>QR ajuda onboarding com DevEUI/JoinEUI/ProfileID; chaves secretas nao devem ficar expostas</td>
+                  <td>"QR facilita cadastro, nao deve vazar AppKey."</td>
+                </tr>
+                <tr>
+                  <td>Certificacao testa a aplicacao final</td>
+                  <td>Certificacao LoRaWAN valida conformidade do dispositivo com MAC/regiao/classes</td>
+                  <td>"Certifica comportamento LoRaWAN, nao o produto inteiro."</td>
+                </tr>
               </tbody>
             </table>
           </section>
@@ -1525,6 +1808,7 @@ Rb ~= SF * BW/2^SF * 4/(4+CR)</code></div>
             <div class="glossary-grid">
               <article class="term-card"><h3>ADR</h3><p>Adaptive Data Rate. Ajusta data rate/SF e potencia conforme margem de enlace.</p></article>
               <article class="term-card"><h3>ABP</h3><p>Activation By Personalization. Ativacao manual com DevAddr e chaves fixas.</p></article>
+              <article class="term-card"><h3>ALOHA</h3><p>Metodo de acesso aleatorio em que o no transmite sem escutar previamente o canal; simples, mas sujeito a colisoes.</p></article>
               <article class="term-card"><h3>Application Server</h3><p>Servidor que entrega payload de aplicacao e integra com sistemas externos.</p></article>
               <article class="term-card"><h3>AppSKey</h3><p>Chave de sessao usada para criptografar/descriptografar payload de aplicacao.</p></article>
               <article class="term-card"><h3>BW</h3><p>Bandwidth. Largura de banda da modulacao LoRa, como 125, 250 ou 500 kHz.</p></article>
@@ -1532,16 +1816,20 @@ Rb ~= SF * BW/2^SF * 4/(4+CR)</code></div>
               <article class="term-card"><h3>DevAddr</h3><p>Endereco curto de sessao usado pelo dispositivo em uma rede LoRaWAN.</p></article>
               <article class="term-card"><h3>DevEUI</h3><p>Identificador global do dispositivo final.</p></article>
               <article class="term-card"><h3>Downlink</h3><p>Mensagem da rede para o dispositivo. E recurso escasso em LoRaWAN.</p></article>
+              <article class="term-card"><h3>DUT</h3><p>Device Under Test. Dispositivo submetido a ensaios de certificacao.</p></article>
               <article class="term-card"><h3>EIRP</h3><p>Potencia isotropica radiada equivalente: potencia + ganho - perdas.</p></article>
               <article class="term-card"><h3>FCnt</h3><p>Frame counter. Ajuda a evitar replay e problemas de sincronismo.</p></article>
               <article class="term-card"><h3>FEC</h3><p>Forward Error Correction. Redundancia para recuperar erro de transmissao.</p></article>
               <article class="term-card"><h3>FPort</h3><p>Porta do frame LoRaWAN usada para separar aplicacao/MAC conforme contexto.</p></article>
               <article class="term-card"><h3>Gateway Bridge</h3><p>Componente que traduz protocolo de gateway para MQTT no ecossistema ChirpStack.</p></article>
               <article class="term-card"><h3>JoinEUI</h3><p>Identificador do contexto/servidor de join em OTAA.</p></article>
+              <article class="term-card"><h3>LCTT/TCL</h3><p>Ferramenta/camada de controle usada em testes de certificacao LoRaWAN.</p></article>
               <article class="term-card"><h3>LR-FHSS</h3><p>Long Range Frequency Hopping Spread Spectrum, camada fisica robusta por saltos de frequencia.</p></article>
               <article class="term-card"><h3>MIC</h3><p>Message Integrity Code. Valida integridade e autenticidade do frame.</p></article>
               <article class="term-card"><h3>Network Server</h3><p>Servidor que valida, deduplica, controla MAC/ADR e agenda downlink.</p></article>
+              <article class="term-card"><h3>Onboarding</h3><p>Processo de associar um dispositivo provisionado a dono, rede, aplicacao e perfil.</p></article>
               <article class="term-card"><h3>OTAA</h3><p>Over-The-Air Activation. Metodo recomendado de join e derivacao de chaves.</p></article>
+              <article class="term-card"><h3>ProfileID</h3><p>Identificador de perfil usado em QR/onboarding para reconhecer tipo de dispositivo ou payload.</p></article>
               <article class="term-card"><h3>RSSI</h3><p>Received Signal Strength Indicator. Potencia recebida em dBm.</p></article>
               <article class="term-card"><h3>RX1/RX2</h3><p>Janelas de recepcao abertas apos uplink em dispositivos Classe A.</p></article>
               <article class="term-card"><h3>SF</h3><p>Spreading Factor. Controla robustez, taxa e airtime da modulacao LoRa.</p></article>
@@ -1765,6 +2053,36 @@ Rb ~= SF * BW/2^SF * 4/(4+CR)</code></div>
             <article class="question">
               <h3>20. Como justificar ChirpStack em um projeto?</h3>
               <div class="answer">ChirpStack fornece servidor LoRaWAN open-source para cadastrar gateways, tenants, applications, device profiles e devices, processar join/uplink/downlink e integrar eventos via MQTT/API.</div>
+            </article>
+
+            <article class="question">
+              <h3>21. Por que LoRaWAN tem limite de capacidade mesmo tendo longo alcance?</h3>
+              <div class="answer">Porque muitos dispositivos compartilham canais e SFs usando acesso aleatorio semelhante ao ALOHA. Airtime alto, colisao, retransmissao e ACKs reduzem a vazao util da rede.</div>
+            </article>
+
+            <article class="question">
+              <h3>22. Diferencie acesso ao meio e roteamento.</h3>
+              <div class="answer">Acesso ao meio define quando e como um no usa o canal de radio. Roteamento define por qual caminho o dado chega ao destino. Em LoRaWAN, o MAC controla o acesso e a topologia e estrela de estrelas.</div>
+            </article>
+
+            <article class="question">
+              <h3>23. Como avaliar uma implantacao LoRaWAN em campo?</h3>
+              <div class="answer">Medindo RSSI, SNR, perda de pacotes, vazao, distancia, visada, obstaculos e configuracao de SF/BW/DR. O alcance nominal nao basta porque relevo e interferencia podem mudar o resultado.</div>
+            </article>
+
+            <article class="question">
+              <h3>24. Qual a funcao do Join Server?</h3>
+              <div class="answer">O Join Server valida o OTAA, conhece root keys associadas ao DevEUI/JoinEUI e participa da derivacao de chaves de sessao. Ele permite separar seguranca de join da operacao de rede.</div>
+            </article>
+
+            <article class="question">
+              <h3>25. Para que serve o QR code LoRaWAN?</h3>
+              <div class="answer">Ele facilita onboarding/cadastro do dispositivo, carregando dados como JoinEUI, DevEUI e ProfileID. Nao deve expor chaves secretas como AppKey/NwkKey.</div>
+            </article>
+
+            <article class="question">
+              <h3>26. O que significa certificacao LoRaWAN?</h3>
+              <div class="answer">E validar se o end-device se comporta conforme a especificacao LoRaWAN e parametros regionais, incluindo classes, MAC, RX, ADR e limites. O protocolo de teste usa comandos de certificacao, como no FPort 224.</div>
             </article>
           </section>
 
