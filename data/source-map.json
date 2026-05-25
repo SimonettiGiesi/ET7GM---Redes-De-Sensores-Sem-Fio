@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-27",
+  "updated_at": "2026-05-25",
   "language_target": "pt-BR",
   "collection_policy": "curadoria focada; resumo original em portugues; sem espelhamento integral de paginas externas",
   "sources": [
@@ -112,17 +112,68 @@
       "group": "LoRa Alliance",
       "domain": "resources.lora-alliance.org",
       "language_found": "en",
-      "status": "referencia normativa",
+      "status": "referencia normativa; PDFs oficiais baixados para consulta offline",
+      "local_files": [
+        "referencias/lorawan-oficial/ts001-1-0-4-lorawan-l2-specification.pdf",
+        "referencias/lorawan-oficial/rp002-1-0-5-lorawan-regional-parameters.pdf",
+        "referencias/lorawan-oficial/ts002-1-1-0-lorawan-backend-interfaces.pdf",
+        "referencias/lorawan-oficial/ts009-1-2-0-certification-protocol.pdf",
+        "referencias/lorawan-oficial/tr005-lorawan-device-identification-qr-codes.pdf",
+        "referencias/lorawan-oficial/tr007-1-1-developing-lorawan-devices.pdf"
+      ],
       "urls": [
         "https://resources.lora-alliance.org/getting-started-with-lorawan/ts001-1-0-4-lorawan-l2-1-0-4-specification",
-        "https://resources.lora-alliance.org/document/rp002-1-0-5-lorawan-regional-parameters"
+        "https://resources.lora-alliance.org/document/rp002-1-0-5-lorawan-regional-parameters",
+        "https://resources.lora-alliance.org/document/ts002-1-1-0-lorawan-backend-interfaces",
+        "https://resources.lora-alliance.org/document/ts009-1-2-0-certification-protocol",
+        "https://resources.lora-alliance.org/technical-recommendations/tr005-lorawan-device-identification-qr-codes",
+        "https://resources.lora-alliance.org/technical-recommendations/tr007-developing-lorawan-devices-v1-1-0"
       ],
       "topics": [
         "especificacao LoRaWAN L2",
         "parametros regionais",
         "MAC",
         "classes",
-        "seguranca"
+        "seguranca",
+        "backend interfaces",
+        "join server",
+        "application server",
+        "roaming",
+        "certificacao",
+        "QR code",
+        "provisionamento",
+        "boas praticas de dispositivos"
+      ]
+    },
+    {
+      "group": "PDFs academicos em portugues",
+      "domain": "institucional",
+      "language_found": "pt-BR",
+      "status": "baixados para consulta offline complementar",
+      "local_files": [
+        "referencias/pt/fundamentos-lorawan-teoria-pratica-errc-2021.pdf",
+        "referencias/pt/integracao-lorawan-knot-chirpstack-ufpe-2024.pdf",
+        "referencias/pt/tecnicas-multiplo-acesso-lorawan-unesp-2018.pdf",
+        "referencias/pt/avaliacao-tecnologia-lorawan-utfpr-2021.pdf"
+      ],
+      "urls": [
+        "https://www.tsi.td.utfpr.edu.br/~edson/minicurso/ERRC_2021_LoRaWAN.pdf",
+        "https://attena.ufpe.br/bitstream/123456789/57814/7/TCC%20Luis%20Felipe%20Miranda%20da%20Silva.pdf",
+        "https://repositorio.unesp.br/handle/11449/156791",
+        "https://repositorio.utfpr.edu.br/jspui/bitstream/1/28130/1/avaliacaotecnologialorawan.pdf"
+      ],
+      "topics": [
+        "fundamentos de LoRaWAN",
+        "arquitetura",
+        "classes",
+        "ativacao",
+        "seguranca",
+        "ChirpStack",
+        "integracao IoT",
+        "acesso ao meio",
+        "avaliacao de desempenho",
+        "alcance",
+        "spreading factor"
       ]
     },
     {

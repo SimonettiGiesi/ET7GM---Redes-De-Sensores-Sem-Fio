@@ -67,12 +67,43 @@ Fontes:
 
 - <https://resources.lora-alliance.org/getting-started-with-lorawan/ts001-1-0-4-lorawan-l2-1-0-4-specification>
 - <https://resources.lora-alliance.org/document/rp002-1-0-5-lorawan-regional-parameters>
+- [`ts001-1-0-4-lorawan-l2-specification.pdf`](../referencias/lorawan-oficial/ts001-1-0-4-lorawan-l2-specification.pdf)
+- [`rp002-1-0-5-lorawan-regional-parameters.pdf`](../referencias/lorawan-oficial/rp002-1-0-5-lorawan-regional-parameters.pdf)
+- [`ts002-1-1-0-lorawan-backend-interfaces.pdf`](../referencias/lorawan-oficial/ts002-1-1-0-lorawan-backend-interfaces.pdf)
+- [`ts009-1-2-0-certification-protocol.pdf`](../referencias/lorawan-oficial/ts009-1-2-0-certification-protocol.pdf)
+- [`tr005-lorawan-device-identification-qr-codes.pdf`](../referencias/lorawan-oficial/tr005-lorawan-device-identification-qr-codes.pdf)
+- [`tr007-1-1-developing-lorawan-devices.pdf`](../referencias/lorawan-oficial/tr007-1-1-developing-lorawan-devices.pdf)
 
 O que extrair para prova:
 
 - LoRaWAN L2 define MAC, classes, seguranca, ativacao e mensagens.
 - Regional Parameters define frequencias, data rates, potencia e janelas por regiao.
+- Backend Interfaces explica a separacao entre Network Server, Join Server, Application Server e roaming.
+- TR005 ajuda a lembrar DevEUI, JoinEUI e identificacao de dispositivos.
+- TR007 reforca boas praticas: provisionamento correto, DevNonce sem reuso, contadores, ADR, duty cycle e seguranca.
 - A especificacao e referencia normativa; para prova, use os resumos e tabelas locais.
+
+## PDFs academicos em portugues
+
+Fontes locais:
+
+- [`fundamentos-lorawan-teoria-pratica-errc-2021.pdf`](../referencias/pt/fundamentos-lorawan-teoria-pratica-errc-2021.pdf)
+- [`integracao-lorawan-knot-chirpstack-ufpe-2024.pdf`](../referencias/pt/integracao-lorawan-knot-chirpstack-ufpe-2024.pdf)
+- [`tecnicas-multiplo-acesso-lorawan-unesp-2018.pdf`](../referencias/pt/tecnicas-multiplo-acesso-lorawan-unesp-2018.pdf)
+- [`avaliacao-tecnologia-lorawan-utfpr-2021.pdf`](../referencias/pt/avaliacao-tecnologia-lorawan-utfpr-2021.pdf)
+
+O que estudar:
+
+- Fundamentos de LoRaWAN, arquitetura, classes, ativacao e seguranca em linguagem academica em portugues.
+- Exemplos de testes, alcance, perda, SF, desempenho e planejamento de implantacao.
+- Relacao entre LoRaWAN, plataformas IoT e ChirpStack em integracao real.
+- Tecnicas de acesso ao meio e limites de capacidade, para reforcar por que airtime e colisoes importam.
+
+Como complementam o material:
+
+- Servem como leitura offline mais longa quando o resumo do `index.html` nao for suficiente.
+- Ajudam a confirmar termos tecnicos em portugues sem depender de traducao improvisada.
+- Trazem estudos de caso brasileiros que reforcam link budget, SF, alcance, desempenho e uso de servidor LoRaWAN.
 
 ## Video indicado no email
 

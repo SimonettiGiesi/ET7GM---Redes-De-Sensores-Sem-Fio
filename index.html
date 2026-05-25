@@ -15,8 +15,14 @@
         </div>
         <nav class="nav" aria-label="Navegacao principal">
           <a href="#resumo">Resumo</a>
+          <a href="#como-responder">Como responder</a>
+          <a href="#ementa">Ementa ET7GM</a>
           <a href="#indice-assuntos">Indice por assunto</a>
           <a href="#rssf">RSSF, IoT e LPWAN</a>
+          <a href="#osi">Modelo OSI</a>
+          <a href="#roteamento">Roteamento</a>
+          <a href="#tecnologias-baixo-consumo">Tecnologias baixo consumo</a>
+          <a href="#aplicacoes">Aplicacoes</a>
           <a href="#lora">LoRa</a>
           <a href="#lora-expandido">LoRa PHY expandido</a>
           <a href="#lrfhss">LR-FHSS</a>
@@ -27,8 +33,10 @@
           <a href="#chirpstack-expandido">ChirpStack expandido</a>
           <a href="#troubleshooting">Troubleshooting</a>
           <a href="#calculos">Calculos</a>
+          <a href="#pegadinhas">Pegadinhas</a>
           <a href="#glossario">Glossario</a>
           <a href="#simulado">Simulado</a>
+          <a href="#questoes-provaveis">Questoes provaveis</a>
           <a href="#fontes-analisadas">Fontes analisadas</a>
           <a href="#fontes">Fontes</a>
         </nav>
@@ -37,7 +45,7 @@
       <div class="main">
         <header class="hero">
           <h1>Material offline para responder a prova de ET7GM</h1>
-          <p>Conteudo focado em LoRa, LR-FHSS, LoRaWAN e ChirpStack, com formulas, exemplos resolvidos e calculadoras locais. Este arquivo funciona sem internet.</p>
+          <p>Conteudo focado na ementa de Redes de Sensores Sem Fio: caracteristicas de RSSF, modelo OSI, roteamento, tecnologias de baixo consumo, aplicacoes, LoRa, LR-FHSS, LoRaWAN e ChirpStack. Este arquivo funciona sem internet.</p>
           <div class="exam-strip" aria-label="Dados da prova">
             <span class="pill">Data: 26/05/2026</span>
             <span class="pill">Sala: CA-307</span>
@@ -58,6 +66,10 @@
             <h2>Resumo de consulta rapida</h2>
             <p class="lead">Se a questao for conceitual, comece por estas frases. Se for numerica, va direto para a secao de calculos.</p>
             <ul class="quick-list">
+              <li><strong>RSSF</strong> conecta nos sensores com restricao de energia, processamento e comunicacao.</li>
+              <li><strong>Modelo OSI</strong> ajuda a separar radio, enlace, roteamento, transporte e aplicacao.</li>
+              <li><strong>Roteamento em RSSF</strong> busca economizar energia, manter cobertura e entregar dados ao sink/gateway.</li>
+              <li><strong>Aplicacoes</strong> definem requisitos: latencia, autonomia, alcance, confiabilidade e volume de dados.</li>
               <li><strong>LoRa</strong> e camada fisica; <strong>LoRaWAN</strong> e protocolo MAC/rede.</li>
               <li><strong>SF maior</strong> aumenta alcance e robustez, mas aumenta muito o airtime e reduz taxa.</li>
               <li><strong>BW maior</strong> reduz airtime e aumenta taxa, mas piora sensibilidade.</li>
@@ -69,10 +81,100 @@
             </ul>
           </section>
 
+          <section id="como-responder">
+            <h2>Como responder a prova</h2>
+            <p class="lead">Use este roteiro para escrever respostas simples, completas e rapidas. A ideia e ganhar ponto mostrando definicao, criterio tecnico e exemplo.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Tipo de questao</th>
+                  <th>Resposta mais segura</th>
+                  <th>Frase pronta</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Definir conceito</td>
+                  <td>Defina, diga para que serve e cite uma limitacao.</td>
+                  <td>"RSSF e uma rede de nos sensores sem fio, normalmente com bateria, usada para coletar dados do ambiente com baixo consumo."</td>
+                </tr>
+                <tr>
+                  <td>Comparar tecnologias</td>
+                  <td>Compare alcance, consumo, taxa, topologia e aplicacao.</td>
+                  <td>"A melhor tecnologia depende do compromisso entre distancia, energia, volume de dados e latencia."</td>
+                </tr>
+                <tr>
+                  <td>Calcular</td>
+                  <td>Escreva a formula, substitua valores e interprete a unidade.</td>
+                  <td>"Como a margem e positiva, o enlace fecha; se fosse negativa, o pacote tenderia a falhar."</td>
+                </tr>
+                <tr>
+                  <td>Diagnosticar falha</td>
+                  <td>Separe em fisico, configuracao regional, chaves, servidor e aplicacao.</td>
+                  <td>"Eu verificaria gateway online, plano regional, credenciais OTAA, device profile, logs e codec."</td>
+                </tr>
+                <tr>
+                  <td>Justificar projeto</td>
+                  <td>Relacione requisito da aplicacao com tecnologia escolhida.</td>
+                  <td>"Para telemetria pequena e esparsa em area ampla, LoRaWAN e adequado; para video ou alta taxa, nao."</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="note">
+              <strong>Ordem mental:</strong> se a pergunta menciona sensor e bateria, pense em energia. Se menciona falha de join, pense em regiao e chaves. Se menciona alcance/taxa, pense em SF, BW, airtime e link budget.
+            </div>
+          </section>
+
+          <section id="ementa">
+            <h2>Ementa ET7GM e mapa de estudo</h2>
+            <p class="lead">A ementa oficial da disciplina resume o que precisa estar dominado para a prova. O LoRaWAN aparece aqui como estudo de caso forte de RSSF/LPWAN.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Item da ementa</th>
+                  <th>O que saber para responder</th>
+                  <th>Onde revisar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Caracteristicas de uma RSSF</td>
+                  <td>nos sensores, sink/gateway, energia, topologia, cobertura, escalabilidade, confiabilidade e agregacao</td>
+                  <td><a href="#rssf">RSSF</a>, <a href="#aplicacoes">Aplicacoes</a></td>
+                </tr>
+                <tr>
+                  <td>Modelo OSI</td>
+                  <td>camadas e exemplos em redes de sensores: fisica, enlace, rede, transporte e aplicacao</td>
+                  <td><a href="#osi">Modelo OSI</a>, <a href="#lorawan">LoRaWAN</a></td>
+                </tr>
+                <tr>
+                  <td>Roteamento para RSSF</td>
+                  <td>roteamento direto, flooding, cluster, geografico, data-centric, multipath, LEACH e RPL</td>
+                  <td><a href="#roteamento">Roteamento</a></td>
+                </tr>
+                <tr>
+                  <td>Tecnologias de comunicacao de baixo consumo energetico</td>
+                  <td>BLE, Zigbee, Wi-Fi, LoRaWAN, Sigfox, NB-IoT e LTE-M por alcance, taxa, consumo e topologia</td>
+                  <td><a href="#tecnologias-baixo-consumo">Tecnologias</a>, <a href="#lora">LoRa</a></td>
+                </tr>
+                <tr>
+                  <td>Aplicacoes de RSSF</td>
+                  <td>casos de uso e seus requisitos: agricultura, industria, cidades, ambiente, saude e logistica</td>
+                  <td><a href="#aplicacoes">Aplicacoes</a>, <a href="#questoes-provaveis">Questoes provaveis</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
           <section id="indice-assuntos">
             <h2>Indice por assunto</h2>
             <p class="lead">Este mapa organiza a base expandida pelos temas que mais provavelmente viram questoes.</p>
             <div class="topic-map">
+              <article class="topic-card">
+                <h3>Ementa geral</h3>
+                <p>RSSF, OSI, roteamento, tecnologias de baixo consumo e aplicacoes. Use estes topicos para nao ficar preso apenas em LoRaWAN.</p>
+                <div class="tag-row"><span class="tag">RSSF</span><span class="tag">OSI</span><span class="tag">Roteamento</span></div>
+              </article>
               <article class="topic-card">
                 <h3>LoRa PHY</h3>
                 <p>CSS, SF, BW, CR, preambulo, cabecalho, CRC, FEC, taxa, airtime, transceivers, concentradores e antenas.</p>
@@ -112,6 +214,48 @@
             <div class="note">
               <strong>Trade-off central:</strong> alcance, taxa, consumo e latencia competem entre si. Uma tecnologia que aumenta muito o alcance normalmente paga com menor taxa, maior tempo no ar ou maior latencia.
             </div>
+            <h3>Elementos de uma RSSF</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Elemento</th>
+                  <th>Funcao</th>
+                  <th>Como pode cair</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>No sensor ou mote</td>
+                  <td>mede uma grandeza, processa localmente e transmite dados</td>
+                  <td>tem restricao de bateria, memoria, processamento e radio</td>
+                </tr>
+                <tr>
+                  <td>Atuador</td>
+                  <td>executa acao fisica, como abrir valvula ou ligar rele</td>
+                  <td>costuma precisar de downlink mais confiavel</td>
+                </tr>
+                <tr>
+                  <td>Sink ou gateway</td>
+                  <td>concentra dados da rede e conecta a outro sistema</td>
+                  <td>em LoRaWAN o gateway e ponte radio-IP; em malha pode ser sink</td>
+                </tr>
+                <tr>
+                  <td>Servidor/aplicacao</td>
+                  <td>armazena, interpreta e mostra os dados</td>
+                  <td>separa rede de sensores da tomada de decisao</td>
+                </tr>
+              </tbody>
+            </table>
+            <h3>Caracteristicas cobraveis</h3>
+            <ul>
+              <li><strong>Energia:</strong> o radio e um dos maiores consumidores; duty cycling e transmissao curta aumentam autonomia.</li>
+              <li><strong>Escalabilidade:</strong> a rede deve aceitar muitos nos sem colisao, congestionamento ou custo excessivo.</li>
+              <li><strong>Cobertura:</strong> depende de potencia, sensibilidade, antena, ambiente e topologia.</li>
+              <li><strong>Confiabilidade:</strong> envolve perdas, interferencia, confirmacao, redundancia e qualidade do enlace.</li>
+              <li><strong>Latencia:</strong> algumas aplicacoes toleram minutos; atuadores e alarmes podem exigir resposta mais rapida.</li>
+              <li><strong>Agregacao:</strong> resumir dados reduz trafego e economiza energia, mas pode perder detalhe.</li>
+              <li><strong>Auto-organizacao:</strong> redes com muitos sensores podem precisar descobrir vizinhos, rotas e falhas.</li>
+            </ul>
             <table>
               <thead>
                 <tr>
@@ -150,6 +294,251 @@
             </table>
             <h3>Resposta curta para prova</h3>
             <p>LPWAN e uma classe de redes para objetos que precisam transmitir poucos dados, a longas distancias, consumindo pouca energia. LoRaWAN e uma LPWAN nao celular, adequada para telemetria esparsa.</p>
+          </section>
+
+          <section id="osi">
+            <h2>Modelo OSI aplicado a RSSF</h2>
+            <p class="lead">O modelo OSI ajuda a organizar a resposta. Em prova, nao precisa decorar tudo isolado: mostre qual problema cada camada resolve.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Camada</th>
+                  <th>Em RSSF</th>
+                  <th>Exemplo LoRaWAN/ChirpStack</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Fisica</td>
+                  <td>radio, frequencia, modulacao, potencia, sensibilidade</td>
+                  <td>LoRa CSS, LR-FHSS, SF, BW, CR, AU915</td>
+                </tr>
+                <tr>
+                  <td>Enlace / MAC</td>
+                  <td>acesso ao meio, quadros, erro, retransmissao, janelas de recepcao</td>
+                  <td>LoRaWAN MAC, RX1/RX2, confirmed/unconfirmed, MIC</td>
+                </tr>
+                <tr>
+                  <td>Rede</td>
+                  <td>enderecamento, roteamento e entrega entre origem e destino</td>
+                  <td>DevAddr, Network Server, deduplicacao; LoRaWAN usa estrela de estrelas</td>
+                </tr>
+                <tr>
+                  <td>Transporte</td>
+                  <td>confiabilidade fim a fim quando necessaria</td>
+                  <td>MQTT/TCP entre servidores e aplicacoes, nao no enlace LoRa do sensor</td>
+                </tr>
+                <tr>
+                  <td>Aplicacao</td>
+                  <td>significado do dado, codec, dashboards, alarmes e atuacao</td>
+                  <td>Application Server, codec ChirpStack, integracao MQTT/HTTP</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="warning">
+              <strong>Pegadinha:</strong> LoRa nao e "todas as camadas". LoRa e fisica. LoRaWAN adiciona MAC/rede/seguranca. ChirpStack implementa servidores e integracoes.
+            </div>
+            <h3>Resposta pronta</h3>
+            <p>Em RSSF, a camada fisica define como o sinal e transmitido, a camada MAC controla o acesso ao meio, a camada de rede cuida de enderecamento/roteamento, e a aplicacao interpreta os dados medidos. Separar camadas facilita diagnostico e projeto.</p>
+          </section>
+
+          <section id="roteamento">
+            <h2>Roteamento em RSSF</h2>
+            <p class="lead">Roteamento em RSSF nao busca apenas o menor caminho. Ele tambem precisa economizar energia, evitar enlaces ruins e manter a rede funcionando quando nos falham.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Estrategia</th>
+                  <th>Ideia</th>
+                  <th>Vantagem</th>
+                  <th>Limitacao</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Direto ao sink</td>
+                  <td>cada no envia diretamente ao coletor</td>
+                  <td>simples</td>
+                  <td>gasta muita energia em nos distantes</td>
+                </tr>
+                <tr>
+                  <td>Flooding</td>
+                  <td>repassar mensagens para muitos vizinhos</td>
+                  <td>alta chance de entrega</td>
+                  <td>muita redundancia, colisao e consumo</td>
+                </tr>
+                <tr>
+                  <td>Gossiping</td>
+                  <td>repassar para alguns vizinhos aleatorios</td>
+                  <td>reduz overhead do flooding</td>
+                  <td>aumenta atraso e pode perder cobertura</td>
+                </tr>
+                <tr>
+                  <td>Hierarquico / cluster</td>
+                  <td>nos enviam a um cluster head, que agrega e encaminha</td>
+                  <td>economiza energia por agregacao</td>
+                  <td>cluster head pode virar gargalo</td>
+                </tr>
+                <tr>
+                  <td>Geografico</td>
+                  <td>usa posicao/distancia para escolher proximo salto</td>
+                  <td>bom quando ha localizacao</td>
+                  <td>depende de coordenadas ou estimativas</td>
+                </tr>
+                <tr>
+                  <td>Data-centric</td>
+                  <td>roteia por interesse/conteudo do dado</td>
+                  <td>evita trafego irrelevante</td>
+                  <td>exige nomeacao/consulta dos dados</td>
+                </tr>
+                <tr>
+                  <td>Multipath</td>
+                  <td>usa rotas alternativas</td>
+                  <td>aumenta confiabilidade</td>
+                  <td>consome mais recursos</td>
+                </tr>
+              </tbody>
+            </table>
+            <h3>Protocolos que podem aparecer</h3>
+            <ul>
+              <li><strong>LEACH:</strong> protocolo hierarquico com cluster heads rotativos para distribuir consumo de energia.</li>
+              <li><strong>RPL:</strong> protocolo de roteamento para redes IPv6 de baixa potencia e perdas, formando uma topologia orientada a destino.</li>
+              <li><strong>Directed Diffusion:</strong> exemplo data-centric, baseado em interesses e gradientes para buscar dados na rede.</li>
+            </ul>
+            <div class="note">
+              <strong>LoRaWAN no mapa:</strong> LoRaWAN tradicional nao e rede mesh de sensores. Ele usa topologia estrela de estrelas: dispositivos falam com gateways, e o Network Server trata deduplicacao e controle.
+            </div>
+          </section>
+
+          <section id="tecnologias-baixo-consumo">
+            <h2>Tecnologias de comunicacao de baixo consumo energetico</h2>
+            <p class="lead">Compare sempre pelos criterios que importam para o problema: alcance, taxa, consumo, topologia, custo, dependencia de infraestrutura e tipo de dado.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Tecnologia</th>
+                  <th>Alcance tipico</th>
+                  <th>Taxa/volume</th>
+                  <th>Topologia</th>
+                  <th>Melhor uso</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>BLE</td>
+                  <td>curto</td>
+                  <td>baixo a medio</td>
+                  <td>estrela, beacon, mesh em perfis especificos</td>
+                  <td>wearables, sensores proximos, celular como coletor</td>
+                </tr>
+                <tr>
+                  <td>Zigbee / 802.15.4</td>
+                  <td>curto a medio</td>
+                  <td>baixo</td>
+                  <td>malha</td>
+                  <td>automacao predial e redes locais com muitos nos</td>
+                </tr>
+                <tr>
+                  <td>Wi-Fi</td>
+                  <td>curto a medio</td>
+                  <td>alto</td>
+                  <td>infraestrutura</td>
+                  <td>quando ha energia e precisa de IP/alta taxa</td>
+                </tr>
+                <tr>
+                  <td>LoRaWAN</td>
+                  <td>longo</td>
+                  <td>baixo</td>
+                  <td>estrela de estrelas</td>
+                  <td>telemetria esparsa em area ampla</td>
+                </tr>
+                <tr>
+                  <td>Sigfox</td>
+                  <td>longo</td>
+                  <td>muito baixo</td>
+                  <td>rede operada</td>
+                  <td>mensagens pequenas e raras com infraestrutura disponivel</td>
+                </tr>
+                <tr>
+                  <td>NB-IoT</td>
+                  <td>longo/celular</td>
+                  <td>baixo a medio</td>
+                  <td>operadora celular</td>
+                  <td>medicao remota com cobertura licenciada</td>
+                </tr>
+                <tr>
+                  <td>LTE-M</td>
+                  <td>longo/celular</td>
+                  <td>medio</td>
+                  <td>operadora celular</td>
+                  <td>mobilidade e maior taxa que NB-IoT</td>
+                </tr>
+              </tbody>
+            </table>
+            <h3>Escolha rapida</h3>
+            <ul>
+              <li>Area pequena e muitos nos locais: Zigbee/802.15.4 pode ser melhor.</li>
+              <li>Sensor proximo de celular: BLE e simples e economico.</li>
+              <li>Dados grandes ou firmware frequente: Wi-Fi ou celular, nao LoRaWAN.</li>
+              <li>Telemetria pequena em area grande: LoRaWAN e candidato forte.</li>
+              <li>Infraestrutura de operadora e cobertura licenciada: NB-IoT/LTE-M.</li>
+            </ul>
+          </section>
+
+          <section id="aplicacoes">
+            <h2>Aplicacoes de RSSF</h2>
+            <p class="lead">Em questoes de aplicacao, a resposta boa liga o caso de uso aos requisitos tecnicos.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Aplicacao</th>
+                  <th>Grandezas medidas</th>
+                  <th>Requisitos principais</th>
+                  <th>Tecnologia provavel</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Agricultura</td>
+                  <td>umidade, temperatura, solo, nivel de agua</td>
+                  <td>grande area, bateria, baixa taxa</td>
+                  <td>LoRaWAN</td>
+                </tr>
+                <tr>
+                  <td>Cidades inteligentes</td>
+                  <td>iluminacao, estacionamento, lixo, qualidade do ar</td>
+                  <td>escala, manutencao baixa, cobertura urbana</td>
+                  <td>LoRaWAN, NB-IoT</td>
+                </tr>
+                <tr>
+                  <td>Industria</td>
+                  <td>vibracao, temperatura, corrente, estado de maquina</td>
+                  <td>confiabilidade, interferencia, integracao com sistemas</td>
+                  <td>802.15.4, Wi-Fi industrial, LoRaWAN em monitoramento</td>
+                </tr>
+                <tr>
+                  <td>Ambiental</td>
+                  <td>chuva, rio, ar, ruido, incendio</td>
+                  <td>baixo consumo, locais remotos, robustez</td>
+                  <td>LoRaWAN, satelital, celular quando houver cobertura</td>
+                </tr>
+                <tr>
+                  <td>Saude</td>
+                  <td>batimento, movimento, queda, temperatura</td>
+                  <td>privacidade, latencia, confiabilidade</td>
+                  <td>BLE, Wi-Fi, celular</td>
+                </tr>
+                <tr>
+                  <td>Logistica</td>
+                  <td>posicao, temperatura, abertura, impacto</td>
+                  <td>mobilidade, cobertura, bateria</td>
+                  <td>BLE, LTE-M, NB-IoT, LoRaWAN conforme infraestrutura</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="note">
+              <strong>Resposta pronta:</strong> primeiro descreva o dado medido, depois diga o requisito dominante. A tecnologia vem depois. Nao escolha LoRaWAN para tudo: ela e excelente para poucos bytes e longa autonomia, mas ruim para alta taxa e baixa latencia garantida.
+            </div>
           </section>
 
           <section id="lora">
@@ -322,6 +711,11 @@
               </tbody>
             </table>
             <p>Resposta esperada: LR-FHSS aumenta robustez e capacidade para uplinks pequenos em cenarios densos ou de longo alcance, dividindo a transmissao em saltos/frequencias de forma mais tolerante a interferencia. Ele nao transforma LoRaWAN em rede de alta taxa.</p>
+            <ul>
+              <li>Nos parametros regionais oficiais, LR-FHSS aparece como camada fisica complementar e com uso principalmente de uplink.</li>
+              <li>Ele usa saltos estreitos de frequencia e cabecalhos redundantes para aumentar robustez.</li>
+              <li>Em prova, associe LR-FHSS a densidade, longo alcance, satelite e mensagens pequenas, nao a streaming.</li>
+            </ul>
           </section>
 
           <section id="lorawan">
@@ -396,6 +790,42 @@
 
             <h3>OTAA e ABP</h3>
             <p><strong>OTAA</strong> e recomendado: o dispositivo faz Join Request/Join Accept e deriva chaves de sessao. <strong>ABP</strong> usa parametros gravados manualmente e e mais suscetivel a problemas de contador e reuso de chaves.</p>
+            <table class="dense-table">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>OTAA</th>
+                  <th>ABP</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Como entra na rede</td>
+                  <td>faz join e recebe parametros de sessao</td>
+                  <td>ja nasce com DevAddr e chaves de sessao</td>
+                </tr>
+                <tr>
+                  <td>Chaves</td>
+                  <td>derivadas a partir de AppKey/NwkKey e nonce</td>
+                  <td>gravadas manualmente</td>
+                </tr>
+                <tr>
+                  <td>DevNonce</td>
+                  <td>nao deve ser reutilizado; em versoes novas funciona como contador</td>
+                  <td>nao participa do join porque nao ha join</td>
+                </tr>
+                <tr>
+                  <td>Risco comum</td>
+                  <td>JoinEUI/AppKey/regiao errados impedem join</td>
+                  <td>reset de frame counter pode fazer servidor rejeitar frames</td>
+                </tr>
+                <tr>
+                  <td>Resposta de prova</td>
+                  <td>preferivel por seguranca e gerencia</td>
+                  <td>mais simples, mas menos robusto operacionalmente</td>
+                </tr>
+              </tbody>
+            </table>
 
             <h3>Seguranca</h3>
             <p>LoRaWAN usa AES-128. O MIC protege integridade/autenticidade do quadro. Chaves de rede protegem controle e autenticidade; AppSKey protege payload de aplicacao. Em LoRaWAN 1.1 ha separacao mais detalhada de chaves de rede, mas a ideia de prova e manter rede e aplicacao separadas.</p>
@@ -405,6 +835,10 @@
 
             <h3>Downlink</h3>
             <p>Downlink e caro porque o gateway precisa transmitir, ha restricoes regionais e dispositivos classe A so escutam apos uplink. ACK confirmado deve ser usado com cuidado.</p>
+            <h3>RX1 e RX2</h3>
+            <p>Em Classe A, cada uplink abre duas oportunidades de recepcao. RX1 normalmente usa parametro relacionado ao uplink e ao offset regional; RX2 costuma usar uma configuracao padrao da regiao. Se o dispositivo e o servidor discordam de RX2, o downlink ou Join Accept pode falhar mesmo quando o uplink chegou.</p>
+            <h3>Frame counters</h3>
+            <p>FCntUp e FCntDown ajudam a impedir repeticao de mensagens antigas. Em ABP, reiniciar contador sem sincronizar servidor e uma causa classica de falha. Em OTAA, uma nova sessao ajuda a renovar parametros, mas DevNonce nao pode ser reutilizado.</p>
           </section>
 
           <section id="lorawan-expandido">
@@ -494,6 +928,34 @@
 
             <h3>Mensagens confirmadas</h3>
             <p>Mensagem confirmada pede ACK. Isso parece atraente, mas custa downlink. Para telemetria periodica, normalmente use mensagem nao confirmada e trate perdas na aplicacao. Para comando critico, atuador ou alarme com confirmacao exigida, use confirmado com parcimonia.</p>
+            <h3>ADR na especificacao</h3>
+            <p>ADR combina decisao do servidor e comportamento do dispositivo. Quando o bit ADR esta ativo, a rede pode enviar comandos como LinkADRReq para ajustar data rate, potencia e canais. Se o dispositivo fica muito tempo sem resposta adequada, mecanismos de backoff de ADR fazem o device buscar configuracoes mais robustas.</p>
+            <table class="dense-table">
+              <thead>
+                <tr>
+                  <th>Termo</th>
+                  <th>Significado em resposta curta</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>ADR bit</td>
+                  <td>indica que o dispositivo aceita controle de taxa adaptativa</td>
+                </tr>
+                <tr>
+                  <td>ADRACKReq</td>
+                  <td>sinaliza que o dispositivo precisa de resposta da rede para confirmar conectividade</td>
+                </tr>
+                <tr>
+                  <td>ADR_ACK_LIMIT / ADR_ACK_DELAY</td>
+                  <td>limites usados no comportamento de backoff quando a rede nao responde</td>
+                </tr>
+                <tr>
+                  <td>LinkADRReq</td>
+                  <td>MAC command usado pela rede para ajustar taxa, potencia e mascara de canais</td>
+                </tr>
+              </tbody>
+            </table>
 
             <h3>LoRaWAN Relay</h3>
             <p>Relay e uma extensao para ajudar dispositivos que nao alcancam gateway diretamente, encaminhando mensagens por outro no. A resposta curta e que relay aumenta cobertura em casos especificos, mas adiciona complexidade, consumo e regras de seguranca/regiao.</p>
@@ -540,6 +1002,16 @@
             <div class="note">
               Para responder com seguranca: "o plano regional controla quais frequencias e data rates podem ser usados; por isso uma configuracao errada impede join, uplink, downlink ou ADR correto".
             </div>
+            <h3>AU915 / Brasil em prova</h3>
+            <p>Nos documentos oficiais de parametros regionais, o Brasil aparece associado ao plano AU915. Em muitos laboratorios brasileiros, a prova pratica ou teorica espera que voce pense em AU915, nao em EU868. Isso muda canais, data rates, mascaras de canal e comportamento de RX1/RX2.</p>
+            <ul>
+              <li><strong>Faixa:</strong> AU915 opera na faixa de 915 a 928 MHz conforme plano regional e regulacao aplicavel.</li>
+              <li><strong>Canais/sub-bandas:</strong> e comum configurar apenas um banco/sub-banda; se device e gateway discordam, o gateway nao escuta o uplink.</li>
+              <li><strong>Join:</strong> em AU915, materiais oficiais indicam DR2 como data rate padrao de Join Request em condicoes usuais.</li>
+              <li><strong>RX1:</strong> o canal de downlink depende do canal de uplink e das regras regionais.</li>
+              <li><strong>RX2:</strong> usa configuracao padrao regional; divergencia de RX2 e causa comum de downlink/Join Accept falhar.</li>
+              <li><strong>Potencia:</strong> EIRP maxima depende do plano regional e da regulacao local; nao responda como se fosse universal.</li>
+            </ul>
             <h3>Tabela de diagnostico regional</h3>
             <table class="dense-table">
               <thead>
@@ -800,6 +1272,54 @@ Rb ~= SF * BW/2^SF * 4/(4+CR)</code></div>
               <div class="formula"><code>Espera = airtime * (1/duty - 1)</code></div>
             </div>
 
+            <h3>Exemplos resolvidos de prova</h3>
+            <table class="dense-table">
+              <thead>
+                <tr>
+                  <th>Questao</th>
+                  <th>Resolucao curta</th>
+                  <th>Interpretacao</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Converter 14 dBm para mW</td>
+                  <td>`P_mW = 10^(14/10) = 25,1 mW`</td>
+                  <td>14 dBm e potencia pequena, comum em radio de baixa potencia</td>
+                </tr>
+                <tr>
+                  <td>EIRP com Ptx 14 dBm, antena 3 dBi e perda 1 dB</td>
+                  <td>`EIRP = 14 + 3 - 1 = 16 dBm`</td>
+                  <td>ganho aumenta direcionalmente; perda de cabo reduz</td>
+                </tr>
+                <tr>
+                  <td>ERP a partir de EIRP 16 dBm</td>
+                  <td>`ERP = 16 - 2,15 = 13,85 dBm`</td>
+                  <td>ERP e menor que EIRP pela referencia de antena</td>
+                </tr>
+                <tr>
+                  <td>Perda maxima com Ptx 14, Gtx 2, Grx 2, perdas 2, sensibilidade -137</td>
+                  <td>`14 + 2 + 2 - 2 - (-137) = 153 dB`</td>
+                  <td>se a perda de caminho for menor que 153 dB, ha margem teorica</td>
+                </tr>
+                <tr>
+                  <td>Margem se Prx = -132 dBm e sensibilidade = -137 dBm</td>
+                  <td>`Margem = -132 - (-137) = 5 dB`</td>
+                  <td>margem positiva indica enlace possivel</td>
+                </tr>
+                <tr>
+                  <td>Duty cycle 1% com airtime 1 s</td>
+                  <td>`Espera = 1 * (1/0,01 - 1) = 99 s`</td>
+                  <td>apos transmitir 1 s, aguarde 99 s na mesma restricao</td>
+                </tr>
+                <tr>
+                  <td>Aumentar SF7 para SF12 mantendo BW</td>
+                  <td>`Tsym` aumenta porque depende de `2^SF`</td>
+                  <td>alcance melhora, airtime e consumo aumentam muito</td>
+                </tr>
+              </tbody>
+            </table>
+
             <div class="calc-grid">
               <article class="calc">
                 <h3>dBm para mW/W</h3>
@@ -933,6 +1453,72 @@ Rb ~= SF * BW/2^SF * 4/(4+CR)</code></div>
             </div>
           </section>
 
+          <section id="pegadinhas">
+            <h2>Pegadinhas de prova</h2>
+            <p class="lead">Estas confusoes aparecem muito em questoes curtas e diagnosticos.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Pegadinha</th>
+                  <th>Resposta correta</th>
+                  <th>Como escrever rapido</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>LoRa e LoRaWAN sao a mesma coisa</td>
+                  <td>LoRa e PHY; LoRaWAN e MAC/rede/seguranca/arquitetura</td>
+                  <td>"LoRa transmite; LoRaWAN organiza a rede."</td>
+                </tr>
+                <tr>
+                  <td>Gateway descriptografa payload</td>
+                  <td>Gateway encaminha radio para IP; servidor valida e aplicacao decodifica</td>
+                  <td>"Gateway e ponte, nao dono da aplicacao."</td>
+                </tr>
+                <tr>
+                  <td>RSSI forte sempre significa link bom</td>
+                  <td>SNR pode estar ruim por ruido/interferencia</td>
+                  <td>"Avalie RSSI e SNR juntos."</td>
+                </tr>
+                <tr>
+                  <td>SF maior sempre e melhor</td>
+                  <td>SF maior aumenta alcance, mas aumenta airtime e reduz capacidade</td>
+                  <td>"Melhor alcance, pior taxa/capacidade."</td>
+                </tr>
+                <tr>
+                  <td>Mensagem confirmada resolve confiabilidade sem custo</td>
+                  <td>ACK usa downlink, que e escasso</td>
+                  <td>"Use confirmado apenas quando necessario."</td>
+                </tr>
+                <tr>
+                  <td>Classe C e melhor que A</td>
+                  <td>Classe C recebe mais rapido, mas consome mais energia</td>
+                  <td>"Classe A para bateria; C para alimentado."</td>
+                </tr>
+                <tr>
+                  <td>EU868, US915 e AU915 sao intercambiaveis</td>
+                  <td>Cada regiao tem frequencias, canais, data rates e limites proprios</td>
+                  <td>"No Brasil/lab, verifique AU915."</td>
+                </tr>
+                <tr>
+                  <td>ABP e sempre mais facil</td>
+                  <td>Pode ser simples no inicio, mas sofre com chaves fixas e frame counters</td>
+                  <td>"OTAA e preferivel em operacao real."</td>
+                </tr>
+                <tr>
+                  <td>LoRaWAN e mesh</td>
+                  <td>LoRaWAN classico usa estrela de estrelas</td>
+                  <td>"Device fala com gateways; servidor deduplica."</td>
+                </tr>
+                <tr>
+                  <td>LPWAN serve para qualquer IoT</td>
+                  <td>LPWAN serve para poucos dados, longo alcance e baixa energia</td>
+                  <td>"Nao use para video, audio ou alta taxa."</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
           <section id="glossario">
             <h2>Glossario expandido</h2>
             <p class="lead">Termos recorrentes nas fontes TTN, ChirpStack e LoRa Alliance.</p>
@@ -960,6 +1546,14 @@ Rb ~= SF * BW/2^SF * 4/(4+CR)</code></div>
               <article class="term-card"><h3>RX1/RX2</h3><p>Janelas de recepcao abertas apos uplink em dispositivos Classe A.</p></article>
               <article class="term-card"><h3>SF</h3><p>Spreading Factor. Controla robustez, taxa e airtime da modulacao LoRa.</p></article>
               <article class="term-card"><h3>SNR</h3><p>Signal-to-Noise Ratio. Diferenca em dB entre sinal e ruido.</p></article>
+              <article class="term-card"><h3>Cluster head</h3><p>No responsavel por agregar dados de um grupo de sensores e encaminhar ao sink.</p></article>
+              <article class="term-card"><h3>Duty cycling</h3><p>Tecnica de alternar periodos ativo/dormindo para economizar energia.</p></article>
+              <article class="term-card"><h3>LEACH</h3><p>Protocolo hierarquico de RSSF com cluster heads rotativos para balancear energia.</p></article>
+              <article class="term-card"><h3>Mote</h3><p>No sensor pequeno com radio, microcontrolador, sensor e fonte de energia.</p></article>
+              <article class="term-card"><h3>RPL</h3><p>Protocolo de roteamento para redes IPv6 de baixa potencia e perdas.</p></article>
+              <article class="term-card"><h3>Sink</h3><p>No coletor que recebe dados dos sensores e encaminha para processamento externo.</p></article>
+              <article class="term-card"><h3>Topologia estrela</h3><p>Nos comunicam diretamente com um concentrador/gateway central.</p></article>
+              <article class="term-card"><h3>Topologia malha</h3><p>Nos podem encaminhar pacotes uns dos outros, aumentando cobertura com mais complexidade.</p></article>
               <article class="term-card"><h3>Uplink</h3><p>Mensagem do dispositivo para a rede.</p></article>
             </div>
           </section>
@@ -1069,10 +1663,121 @@ Rb ~= SF * BW/2^SF * 4/(4+CR)</code></div>
             </article>
           </section>
 
+          <section id="questoes-provaveis">
+            <h2>Questoes provaveis por ementa</h2>
+            <p class="lead">Use estas respostas como molde. Se a questao vier diferente, preserve a estrutura: conceito, criterio e exemplo.</p>
+
+            <article class="question">
+              <h3>1. O que caracteriza uma RSSF?</h3>
+              <div class="answer">Uma RSSF e formada por nos sensores sem fio que coletam dados do ambiente e enviam a um sink/gateway. Suas principais caracteristicas sao restricao de energia, baixo processamento, comunicacao sujeita a perdas, necessidade de cobertura, escalabilidade e confiabilidade.</div>
+            </article>
+
+            <article class="question">
+              <h3>2. Por que energia e o principal problema em RSSF?</h3>
+              <div class="answer">Porque muitos nos usam bateria e ficam em locais de dificil manutencao. O radio consome bastante energia, entao protocolos usam duty cycling, mensagens curtas, agregacao e roteamento energeticamente eficiente.</div>
+            </article>
+
+            <article class="question">
+              <h3>3. Explique a relacao entre RSSF, IoT e LPWAN.</h3>
+              <div class="answer">RSSF e a rede de sensores; IoT e o ecossistema que conecta objetos, plataformas e aplicacoes; LPWAN e uma classe de comunicacao de longo alcance e baixo consumo usada em muitos cenarios de IoT/RSSF.</div>
+            </article>
+
+            <article class="question">
+              <h3>4. Aplique o modelo OSI a uma rede LoRaWAN.</h3>
+              <div class="answer">Na camada fisica entra LoRa ou LR-FHSS. Na camada MAC/rede entra LoRaWAN, com classes, RX1/RX2, enderecamento, MIC e ADR. No backend, ChirpStack/Network Server gerencia a rede e MQTT/Aplicacao tratam os dados.</div>
+            </article>
+
+            <article class="question">
+              <h3>5. Qual a diferenca entre roteamento em mesh e LoRaWAN?</h3>
+              <div class="answer">Em mesh, nos podem encaminhar pacotes de outros nos. Em LoRaWAN classico, o dispositivo envia diretamente a gateways e o Network Server deduplica. Portanto LoRaWAN usa estrela de estrelas, nao roteamento multi-hop tradicional.</div>
+            </article>
+
+            <article class="question">
+              <h3>6. Compare roteamento hierarquico e flooding.</h3>
+              <div class="answer">Flooding repassa mensagens amplamente e aumenta chance de entrega, mas consome muita energia e gera colisao. Roteamento hierarquico usa clusters e cluster heads para agregar dados, economizando energia, mas cria risco de gargalo no cluster head.</div>
+            </article>
+
+            <article class="question">
+              <h3>7. Para que serve LEACH?</h3>
+              <div class="answer">LEACH e um protocolo hierarquico de RSSF que alterna cluster heads para distribuir consumo de energia. A ideia e reduzir transmissoes longas e agregar dados antes de enviar ao sink.</div>
+            </article>
+
+            <article class="question">
+              <h3>8. Para que serve RPL?</h3>
+              <div class="answer">RPL e usado em redes IPv6 de baixa potencia e perdas. Ele organiza uma topologia orientada a destino para encaminhar dados em redes com enlaces instaveis e recursos limitados.</div>
+            </article>
+
+            <article class="question">
+              <h3>9. Compare BLE, Zigbee e LoRaWAN.</h3>
+              <div class="answer">BLE e adequado a curto alcance e conexao com celular. Zigbee/802.15.4 e bom para rede local de baixo consumo, muitas vezes em malha. LoRaWAN e adequado para longo alcance, baixa taxa e telemetria esparsa.</div>
+            </article>
+
+            <article class="question">
+              <h3>10. Quando NB-IoT ou LTE-M pode ser melhor que LoRaWAN?</h3>
+              <div class="answer">Quando se deseja cobertura celular gerenciada por operadora, mobilidade, maior confiabilidade de servico ou maior taxa que LoRaWAN. O custo e a dependencia de operadora podem ser desvantagens.</div>
+            </article>
+
+            <article class="question">
+              <h3>11. Escolha tecnologia para agricultura remota.</h3>
+              <div class="answer">LoRaWAN e uma boa escolha se os sensores enviam poucos bytes periodicamente, precisam de bateria longa e cobrem area grande. A resposta deve citar baixo consumo, longo alcance e baixa taxa.</div>
+            </article>
+
+            <article class="question">
+              <h3>12. Escolha tecnologia para monitoramento de video.</h3>
+              <div class="answer">LoRaWAN nao e adequado, pois video exige alta taxa e baixa latencia. Wi-Fi, rede cabeada ou celular seriam mais apropriados dependendo da infraestrutura.</div>
+            </article>
+
+            <article class="question">
+              <h3>13. O que e agregacao de dados?</h3>
+              <div class="answer">E combinar ou resumir leituras de varios sensores antes de transmitir. Reduz trafego e consumo, mas pode perder detalhes individuais.</div>
+            </article>
+
+            <article class="question">
+              <h3>14. Explique o fluxo de um uplink LoRaWAN.</h3>
+              <div class="answer">O device transmite por LoRa/LR-FHSS, gateways recebem e encaminham por IP, o Network Server valida MIC e deduplica, e o Application Server entrega o payload decodificado para a aplicacao.</div>
+            </article>
+
+            <article class="question">
+              <h3>15. Explique o fluxo de OTAA.</h3>
+              <div class="answer">O dispositivo envia Join Request com identificadores e nonce. O Join Server/Network Server valida credenciais, responde com Join Accept e permite derivar chaves de sessao. Isso e preferivel a chaves fixas de ABP.</div>
+            </article>
+
+            <article class="question">
+              <h3>16. Por que DevNonce importa?</h3>
+              <div class="answer">DevNonce evita reutilizacao indevida em OTAA. Se for repetido, pode comprometer seguranca ou fazer o servidor rejeitar join, porque a rede precisa impedir repeticao de sessoes antigas.</div>
+            </article>
+
+            <article class="question">
+              <h3>17. O que e AU915 e por que importa no Brasil?</h3>
+              <div class="answer">AU915 e um plano regional LoRaWAN usado como referencia para o Brasil em materiais oficiais. Ele define frequencias, canais, data rates e regras de RX1/RX2; se a configuracao divergir, join e uplink podem falhar.</div>
+            </article>
+
+            <article class="question">
+              <h3>18. Por que o downlink e limitado em LoRaWAN?</h3>
+              <div class="answer">Porque o gateway precisa transmitir em canais regulados, dispositivos Classe A so escutam apos uplinks e ACKs ocupam capacidade da rede. Por isso comandos e mensagens confirmadas devem ser usados com cuidado.</div>
+            </article>
+
+            <article class="question">
+              <h3>19. Como diagnosticar gateway online mas device sem join?</h3>
+              <div class="answer">Verifique se o gateway esta na regiao/sub-banda correta, se DevEUI/JoinEUI/AppKey batem, se o device profile usa MAC version e parametros regionais corretos, e se RX2 esta compativel.</div>
+            </article>
+
+            <article class="question">
+              <h3>20. Como justificar ChirpStack em um projeto?</h3>
+              <div class="answer">ChirpStack fornece servidor LoRaWAN open-source para cadastrar gateways, tenants, applications, device profiles e devices, processar join/uplink/downlink e integrar eventos via MQTT/API.</div>
+            </article>
+          </section>
+
           <section id="fontes-analisadas">
             <h2>Fontes analisadas</h2>
             <p class="lead">A coleta recursiva focada esta registrada em <code>data/source-map.json</code>. As fichas abaixo indicam como cada grupo foi usado.</p>
             <div class="source-cards">
+              <article class="source-card">
+                <h3>UTFPR - ementa ET7GM</h3>
+                <p>A resolucao da UTFPR foi usada para alinhar o HTML a ementa: caracteristicas de RSSF, modelo OSI, roteamento, tecnologias de baixo consumo energetico e aplicacoes.</p>
+                <p><strong>Uso no HTML:</strong> estrutura das secoes gerais de prova.</p>
+                <a href="https://antigo.utfpr.edu.br/documentos/conselhos/cogep/resolucoes/resolucoes-2017/reso-100-17-inclusao-de-optativas-eng-eletrica-contr-auto-industrial-eletrica-enfase.pdf/%40%40download/file/RESO%20100-17%20INCLUS%C3%83O%20DE%20OPTATIVAS%20ENG%20ELETRICA%2C%20CONTR%20AUTO%2C%20INDUSTRIAL%20ELETRICA%20ENFASE.pdf">Fonte original</a>
+              </article>
               <article class="source-card">
                 <h3>TTN LoRaWAN</h3>
                 <p>Foram analisadas 32 paginas sob <code>/docs/lorawan/</code>, cobrindo arquitetura, classes, ADR, ativacao, seguranca, RSSI/SNR, EIRP/ERP, duty cycle, planos regionais, formato PHY, mensagens, antenas, transceivers e glossario.</p>
@@ -1093,9 +1798,15 @@ Rb ~= SF * BW/2^SF * 4/(4+CR)</code></div>
               </article>
               <article class="source-card">
                 <h3>LoRa Alliance</h3>
-                <p>TS001 e RP002 foram tratadas como referencias normativas para MAC, seguranca, classes e parametros regionais. O HTML usa resumo proprio.</p>
+                <p>TS001, RP002, TS002, TS009, TR005 e TR007 foram baixados como referencias oficiais para MAC, seguranca, classes, parametros regionais, backend, certificacao, QR code e boas praticas de dispositivo.</p>
                 <p><strong>Uso no HTML:</strong> base normativa para evitar contradicoes conceituais.</p>
-                <a href="https://resources.lora-alliance.org/getting-started-with-lorawan/ts001-1-0-4-lorawan-l2-1-0-4-specification">TS001</a>
+                <a href="referencias/lorawan-oficial/ts001-1-0-4-lorawan-l2-specification.pdf">Abrir referencias oficiais</a>
+              </article>
+              <article class="source-card">
+                <h3>PDFs em portugues</h3>
+                <p>Foram baixados quatro PDFs academicos de UTFPR, UFPE e UNESP para consulta offline complementar sobre fundamentos, avaliacao pratica, acesso ao meio e integracao com ChirpStack.</p>
+                <p><strong>Uso no HTML:</strong> apoio em portugues para aprofundar conceitos ja resumidos.</p>
+                <a href="referencias/pt/fundamentos-lorawan-teoria-pratica-errc-2021.pdf">Abrir referencias locais</a>
               </article>
               <article class="source-card">
                 <h3>Video do email</h3>
@@ -1111,6 +1822,7 @@ Rb ~= SF * BW/2^SF * 4/(4+CR)</code></div>
             <p>O material local foi escrito com resumo proprio em portugues. Estes links ficam para revisao fora da prova.</p>
             <ul class="source-list">
               <li><a href="https://www.thethingsnetwork.org/docs/lorawan/">The Things Network - LoRaWAN</a></li>
+              <li><a href="https://antigo.utfpr.edu.br/documentos/conselhos/cogep/resolucoes/resolucoes-2017/reso-100-17-inclusao-de-optativas-eng-eletrica-contr-auto-industrial-eletrica-enfase.pdf/%40%40download/file/RESO%20100-17%20INCLUS%C3%83O%20DE%20OPTATIVAS%20ENG%20ELETRICA%2C%20CONTR%20AUTO%2C%20INDUSTRIAL%20ELETRICA%20ENFASE.pdf">UTFPR - Resolucao com ementa ET7GM</a></li>
               <li><a href="https://www.thethingsnetwork.org/docs/lorawan/architecture/">TTN - Architecture</a></li>
               <li><a href="https://www.thethingsnetwork.org/docs/lorawan/spreading-factors/">TTN - Spreading Factors</a></li>
               <li><a href="https://www.thethingsnetwork.org/docs/lorawan/adaptive-data-rate/">TTN - Adaptive Data Rate</a></li>
@@ -1124,11 +1836,29 @@ Rb ~= SF * BW/2^SF * 4/(4+CR)</code></div>
               <li><a href="https://www.mokolora.com/pt/full-understanding-of-lora-and-lorawan/">MOKO - Compreensao total de LoRa e LoRaWAN</a></li>
               <li><a href="https://www.youtube.com/watch?v=9NjgRWlvw44">Video indicado no email</a></li>
             </ul>
+            <h3>Documentos oficiais LoRaWAN baixados</h3>
+            <p>Especificacoes e recomendacoes oficiais da LoRa Alliance para consulta offline normativa.</p>
+            <ul class="source-list">
+              <li><a href="referencias/lorawan-oficial/ts001-1-0-4-lorawan-l2-specification.pdf">TS001-1.0.4 LoRaWAN L2 Specification</a></li>
+              <li><a href="referencias/lorawan-oficial/rp002-1-0-5-lorawan-regional-parameters.pdf">RP002-1.0.5 LoRaWAN Regional Parameters</a></li>
+              <li><a href="referencias/lorawan-oficial/ts002-1-1-0-lorawan-backend-interfaces.pdf">TS002-1.1.0 LoRaWAN Backend Interfaces</a></li>
+              <li><a href="referencias/lorawan-oficial/ts009-1-2-0-certification-protocol.pdf">TS009-1.2.0 Certification Protocol</a></li>
+              <li><a href="referencias/lorawan-oficial/tr005-lorawan-device-identification-qr-codes.pdf">TR005 LoRaWAN Device Identification QR Codes</a></li>
+              <li><a href="referencias/lorawan-oficial/tr007-1-1-developing-lorawan-devices.pdf">TR007-1.1 Developing LoRaWAN Devices</a></li>
+            </ul>
+            <h3>PDFs em portugues baixados</h3>
+            <p>Documentos academicos locais para consulta offline complementar.</p>
+            <ul class="source-list">
+              <li><a href="referencias/pt/fundamentos-lorawan-teoria-pratica-errc-2021.pdf">Fundamentos de LoRaWAN - Teoria e Pratica</a></li>
+              <li><a href="referencias/pt/integracao-lorawan-knot-chirpstack-ufpe-2024.pdf">Integracao LoRaWAN, KNoT e ChirpStack - UFPE 2024</a></li>
+              <li><a href="referencias/pt/tecnicas-multiplo-acesso-lorawan-unesp-2018.pdf">Tecnicas de multiplo acesso para redes LORAWAN - UNESP 2018</a></li>
+              <li><a href="referencias/pt/avaliacao-tecnologia-lorawan-utfpr-2021.pdf">Avaliacao da tecnologia LoRaWAN - UTFPR 2021</a></li>
+            </ul>
           </section>
         </main>
 
         <footer class="footer">
-          Material preparado para uso offline. Arquivos complementares: docs/01-guia-de-estudo.md, docs/02-formulas-e-calculos.md, docs/03-simulado.md, docs/04-fontes.md, docs/05-base-expandida.md, docs/06-fichas-fontes.md e data/source-map.json.
+          Material preparado para uso offline. Arquivos complementares: docs/01-guia-de-estudo.md, docs/02-formulas-e-calculos.md, docs/03-simulado.md, docs/04-fontes.md, docs/05-base-expandida.md, docs/06-fichas-fontes.md, data/source-map.json, referencias/lorawan-oficial/ e referencias/pt/.
         </footer>
       </div>
     </div>
